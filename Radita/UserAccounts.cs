@@ -6,12 +6,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 using MySql.Data.MySqlClient;
 
 
 namespace Radita
 {
-    class UserAccounts
+    public class UserAccounts
     {
         public string confirmedAdmin, confirmedLastName;
         private MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;database=radita");
@@ -44,7 +45,7 @@ namespace Radita
             try
             {
                 conn.Open();
-                string addUser = "insert into users(username,password,admin,lastname,firstname,secret_word) values(@username,@password,@admin,@lastname,@firstname,@secretword)";
+                string addUser = "insert into users(username,password,admin,lastname,firstname,secretword) values(@username,@password,@admin,@lastname,@firstname,@secretword)";
                 MySqlCommand cmd = new MySqlCommand(addUser, conn);
                 cmd.Parameters.AddWithValue("@username", str1);
                 cmd.Parameters.AddWithValue("@password", str2);
@@ -78,12 +79,12 @@ namespace Radita
             }
         }
 
-        public void Modify(int num, string str1, string str2, string str3, string str4, string str5, string str6)
+        public void Modify(string str1, string str2, string str3, string str4, string str5, string str6)
         {
             try
             {
                 conn.Open();
-                string mod = "update users set username=" + str1 + ", password=" + str2 + ", admin=" + str3 + ", last_name=" + str4 + ", first_name=" + str5 + ", secret_word=" + str6 + " where id='" + num + "'";
+                string mod = "update users set username='" + str1 + "', password='" + str2 + "', admin='" + str3 + "', lastname='" + str4 + "', firstname='" + str5 + "', secretword='" + str6 + "' where username='" + str1 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
