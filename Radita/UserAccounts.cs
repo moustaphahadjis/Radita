@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MetroFramework.Controls;
 using MySql.Data.MySqlClient;
 
 
@@ -14,23 +13,21 @@ namespace Radita
 {
     public class UserAccounts
     {
-        public string confirmedAdmin, confirmedLastName;
         private MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;database=radita");
 
+        /******Method to check user password******/
         public bool CheckPass(string str1, string str2)
         {
             bool result;
 
             conn.Open();
-            string checkPassword = "select admin, lastname from users where username='" + str1 + "' and password='" + str2 + "'";
+            string checkPassword = "select * from users where username='" + str1 + "' and password='" + str2 + "'";
             MySqlCommand cmd = new MySqlCommand(checkPassword, conn);
             MySqlDataReader sdr = cmd.ExecuteReader();
 
             if (sdr.Read())
             {
                 result = true;
-                confirmedAdmin = sdr[0].ToString();
-                confirmedLastName = sdr[1].ToString();
             }
             else
             {
@@ -40,6 +37,29 @@ namespace Radita
             return result;
         }
 
+        /******Method to check for user******/
+        public bool CheckUser(string str1)
+        {
+            bool result;
+
+            conn.Open();
+            string checkUsername = "select * from users where username='" + str1 + "'";
+            MySqlCommand cmd = new MySqlCommand(checkUsername, conn);
+            MySqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            conn.Close();
+            return result;
+        }
+
+        /******Method to add record to database******/
         public void Add(string str1, string str2, string str3, string str4, string str5, string str6)
         {
             try
@@ -54,15 +74,15 @@ namespace Radita
                 cmd.Parameters.AddWithValue("@firstname", str5);
                 cmd.Parameters.AddWithValue("@secretword", str6);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("User has been created successfully");
                 conn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! Couldn't create user! " + ex.ToString());
+                MessageBox.Show("Error! " + ex.ToString());
             }
         }
 
+        /******Method to delete record******/
         public void Delete(string str1)
         {
             try
@@ -75,23 +95,24 @@ namespace Radita
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! Failed to Delete! " + ex.ToString());
+                MessageBox.Show("Error! " + ex.ToString());
             }
         }
 
-        public void Modify(string str1, string str2, string str3, string str4, string str5, string str6)
+        /******Method to modify records******/
+        public void Modify(string str0, string str1, string str2, string str3, string str4, string str5, string str6)
         {
             try
             {
                 conn.Open();
-                string mod = "update users set username='" + str1 + "', password='" + str2 + "', admin='" + str3 + "', lastname='" + str4 + "', firstname='" + str5 + "', secretword='" + str6 + "' where username='" + str1 + "'";
+                string mod = "update users set username='" + str1 + "', password='" + str2 + "', admin='" + str3 + "', lastname='" + str4 + "', firstname='" + str5 + "', secretword='" + str6 + "' where id='" + str0 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! Failed to Update information! " + ex.ToString());
+                MessageBox.Show("Error! " + ex.ToString());
             }
         }
     }

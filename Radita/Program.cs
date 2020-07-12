@@ -16,7 +16,7 @@ namespace Radita
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AccTest());
+            Application.Run(new Accounts());
         }
     }
 }
