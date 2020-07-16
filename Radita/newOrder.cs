@@ -20,7 +20,8 @@ namespace Radita
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Classes.stock tmp;
+            
         }
     }
 }
