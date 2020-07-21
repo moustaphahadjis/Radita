@@ -12,16 +12,16 @@ namespace Radita.Classes
 {
     class Clients
     {
-        private MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;database=radita");
+        private MySqlConnection con = new MySqlConnection("server=localhost;user id=root;database=radita");
 
         /******Method to add record to database******/
         public void Add(string str1, string str2, string str3)
         {
             try
             {
-                conn.Open();
-                string addClient = "insert into clients(names,telephone,type,total,credit,balance) values(@names,@telephone,@type,@total,@credit,@balance";
-                MySqlCommand cmd = new MySqlCommand(addClient, conn);
+                con.Open();
+                string addClient = "insert into clients(names,telephone,type,total,credit,balance) values(@names,@telephone,@type,@total,@credit,@balance)";
+                MySqlCommand cmd = new MySqlCommand(addClient, con);
                 cmd.Parameters.AddWithValue("@names", str1);
                 cmd.Parameters.AddWithValue("@telephone", str2);
                 cmd.Parameters.AddWithValue("@type", str3);
@@ -29,7 +29,7 @@ namespace Radita.Classes
                 cmd.Parameters.AddWithValue("@credit", "0.0");
                 cmd.Parameters.AddWithValue("@balance", "0.0");
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -42,9 +42,9 @@ namespace Radita.Classes
         {
             bool result;
 
-            conn.Open();
+            con.Open();
             string checkName = "select * from clients where names='" + str1 + "'";
-            MySqlCommand cmd = new MySqlCommand(checkName, conn);
+            MySqlCommand cmd = new MySqlCommand(checkName, con);
             MySqlDataReader sdr = cmd.ExecuteReader();
 
             if (sdr.Read())
@@ -55,7 +55,7 @@ namespace Radita.Classes
             {
                 result = false;
             }
-            conn.Close();
+            con.Close();
             return result;
         }
 
@@ -64,11 +64,11 @@ namespace Radita.Classes
         {
             try
             {
-                conn.Open();
+                con.Open();
                 string del = "delete from clients where names='" + str1 + "'";
-                MySqlCommand cmd = new MySqlCommand(del, conn);
+                MySqlCommand cmd = new MySqlCommand(del, con);
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -81,11 +81,11 @@ namespace Radita.Classes
         {
             try
             {
-                conn.Open();
+                con.Open();
                 string mod = "update clients set names='" + str1 + "', telephone='" + str2 + "', total='" + str3 + "', credit='" + str4 + "', type='" + str5 + "', balance='" + str6 + "' where id='" + str0 + "'";
-                MySqlCommand cmd = new MySqlCommand(mod, conn);
+                MySqlCommand cmd = new MySqlCommand(mod, con);
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                con.Close();
             }
             catch (Exception ex)
             {
