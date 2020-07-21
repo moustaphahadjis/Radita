@@ -130,6 +130,12 @@
     <Compile Include="leftMenu.Designer.cs">
       <DependentUpon>leftMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="newWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newWork.Designer.cs">
+      <DependentUpon>newWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="newOrder.resx">
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="leftMenu.resx">
       <DependentUpon>leftMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newWork.resx">
+      <DependentUpon>newWork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
