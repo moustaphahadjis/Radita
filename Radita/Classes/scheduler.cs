@@ -95,7 +95,6 @@ namespace Radita.Classes
                     dt.Rows.Remove(dt.Rows[i]);
                 }
             }
-
             return dt;
         }
     }
