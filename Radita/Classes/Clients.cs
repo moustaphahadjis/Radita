@@ -77,12 +77,12 @@ namespace Radita.Classes
         }
 
         /******Method to modify records******/
-        public void Modify(string str0, string str1, string str2, string str3, string str4, string str5, string str6)
+        public void Modify(string str0, string str1, string str2, string str3)
         {
             try
             {
                 con.Open();
-                string mod = "update clients set names='" + str1 + "', telephone='" + str2 + "', total='" + str3 + "', credit='" + str4 + "', type='" + str5 + "', balance='" + str6 + "' where id='" + str0 + "'";
+                string mod = "update clients set total='" + str1 + "', credit='" + str2 + "', balance='" + str3 + "' where id='" + str0 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
