@@ -25,24 +25,33 @@ namespace Radita
 
         private void newWork_Load(object sender, EventArgs e)
         {
-
+            refresh();
         }
 
         void refresh()
         {
 
             Classes.employee employees = new Classes.employee();
-            dtEmployees = employees.getAll(); 
+            dtEmployees = employees.getAll();
+            Classes.Clients clients = new Classes.Clients();
+            dtClients = clients.getAll();
             //adding clients and employees to autocomplete;
             metroTextBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             metroTextBox2.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             
 
-            if(dtEmployees.Rows.Count>0)
-                foreach(DataRow row in dtEmployees.Rows)
+            if(dtClients.Rows.Count>0)
+                foreach(DataRow row in dtClients.Rows)
                 {
                     metroTextBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
                     metroTextBox2.AutoCompleteCustomSource.Add(row.ItemArray[2].ToString());
+                }
+
+
+            if (dtEmployees.Rows.Count > 0)
+                foreach(DataRow row in dtEmployees.Rows)
+                {
+                    metroComboBox1.Items.Add(row.ItemArray[1].ToString());
                 }
         }
 
@@ -192,7 +201,7 @@ namespace Radita
 
             if(!exist)
             {
-                NewClient newClient = new NewClient(metroTextBox1.Text, metroTextBox2.Text);
+                newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text);
                 newClient.ShowDialog();
             }
             if(allReady)

@@ -15,17 +15,15 @@ namespace Radita.Classes
         private MySqlConnection con = new MySqlConnection("server=localhost;user id=root;database=radita");
 
         /******Method to add record to database******/
-        public void Add(string str1, string str2, string str3)
+        public void Add(string name, string phone)
         {
             try
             {
                 con.Open();
                 string addClient = "insert into clients(names,telephone,type,total,credit,balance) values(@names,@telephone,@type,@total,@credit,@balance)";
                 MySqlCommand cmd = new MySqlCommand(addClient, con);
-                cmd.Parameters.AddWithValue("@names", str1);
-                cmd.Parameters.AddWithValue("@telephone", str2);
-                cmd.Parameters.AddWithValue("@type", str3);
-                cmd.Parameters.AddWithValue("@total", "0.0");
+                cmd.Parameters.AddWithValue("@names", name);
+                cmd.Parameters.AddWithValue("@telephone", phone);
                 cmd.Parameters.AddWithValue("@credit", "0.0");
                 cmd.Parameters.AddWithValue("@balance", "0.0");
                 cmd.ExecuteNonQuery();
@@ -90,6 +88,24 @@ namespace Radita.Classes
             catch (Exception ex)
             {
                 MessageBox.Show("Error! " + ex.ToString());
+            }
+        }
+
+        public DataTable getAll()
+        {
+            try
+            {
+                con.Open();
+                MySqlDataAdapter data = new MySqlDataAdapter("select * from clients", con);
+                DataTable dt = new DataTable();
+                con.Close();
+                data.Fill(dt);
+                return dt;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
             }
         }
     }
