@@ -13,12 +13,14 @@ namespace Radita
     public partial class newWork : MetroFramework.Forms.MetroForm
     {
         int progressCounter;
-        bool allready;
+        bool allReady;
+
+        DataTable dtClients, dtEmployees;
         public newWork()
         {
             InitializeComponent();
             progressCounter = 0;
-            allready = false;
+            allReady = false;
         }
 
         private void newWork_Load(object sender, EventArgs e)
@@ -28,8 +30,20 @@ namespace Radita
 
         void refresh()
         {
-            DataTable clients, employees;
+
+            Classes.employee employees = new Classes.employee();
+            dtEmployees = employees.getAll(); 
             //adding clients and employees to autocomplete;
+            metroTextBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            metroTextBox2.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            
+
+            if(dtEmployees.Rows.Count>0)
+                foreach(DataRow row in dtEmployees.Rows)
+                {
+                    metroTextBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
+                    metroTextBox2.AutoCompleteCustomSource.Add(row.ItemArray[2].ToString());
+                }
         }
 
         private void metroPanel1_Paint(object sender, PaintEventArgs e)
@@ -78,31 +92,31 @@ namespace Radita
             {
                 case 1:
                     metroProgressSpinner1.Value = progressSplit;
-                    allready = false;
+                    allReady = false;
                     break;
                 case 2:
                     metroProgressSpinner1.Value = progressSplit * 2;
-                    allready = false;
+                    allReady = false;
                     break;
                 case 3:
                     metroProgressSpinner1.Value = progressSplit * 3;
-                    allready = false;
+                    allReady = false;
                     break;
                 case 4:
                     metroProgressSpinner1.Value = progressSplit * 4;
-                    allready = false;
+                    allReady = false;
                     break;
                 case 5:
                     metroProgressSpinner1.Value = progressSplit * 5;
-                    allready = false;
+                    allReady = false;
                     break;
                 case 6:
                     metroProgressSpinner1.Value = progressSplit * 6;
-                    allready = true;
+                    allReady = true;
                     break;
                 default:
                     metroProgressSpinner1.Value = 0;
-                    allready = false;
+                    allReady = false;
                     break;
             }
         }
@@ -161,6 +175,44 @@ namespace Radita
 
         private void updateProgress(object sender, EventArgs e)
         {
+            updateProgress();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //check if client is in the database
+            bool exist = false;
+            foreach(DataRow row in dtClients.Rows)
+            {
+                if(metroTextBox1.Text==row.ItemArray[1].ToString() && metroTextBox2.Text==row.ItemArray[2].ToString())
+                {
+                    exist = true;
+                }
+            }
+
+            if(!exist)
+            {
+                NewClient newClient = new NewClient(metroTextBox1.Text, metroTextBox2.Text);
+                newClient.ShowDialog();
+            }
+            if(allReady)
+            {
+                Classes.scheduler work = new Classes.scheduler();
+                work.addNew(metroTextBox1.Text, metroTextBox2.Text, Convert.ToInt64(metroTextBox3.Text), Convert.ToInt64(metroTextBox4.Text), metroComboBox1.Text, metroDateTime1.Text);
+            }
+        }
+
+        private void clientSelection(object sender, EventArgs e)
+        {
+
+            foreach(DataRow row in dtClients.Rows)
+            {
+                if(row.ItemArray[1].ToString().ToUpper()==metroTextBox1.Text.ToUpper())
+                {
+                    metroTextBox2.Text = row.ItemArray[2].ToString();
+                }
+            }
+
             updateProgress();
         }
     }

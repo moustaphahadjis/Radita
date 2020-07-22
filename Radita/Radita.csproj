@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\employee.cs" />
     <Compile Include="Classes\scheduler.cs" />
     <Compile Include="Classes\stock.cs" />
     <Compile Include="newOrder.cs">

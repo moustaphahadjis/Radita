@@ -12,9 +12,22 @@ namespace Radita
 {
     public partial class NewClient : Form
     {
+        string name, phone;
         public NewClient()
         {
             InitializeComponent();
+            name = "";
+            phone = "";
+        }
+        //overloading constructor to get Name and Phone NUmber
+        public NewClient(string tmp1, string tmp2)
+        {
+            InitializeComponent();
+            name = tmp1;
+            phone = tmp2;
+
+            textBox1.Text = name;
+            textBox2.Text = phone;
         }
 
         private void button2_Click(object sender, EventArgs e)
