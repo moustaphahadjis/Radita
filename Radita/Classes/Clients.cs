@@ -20,9 +20,9 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                string addClient = "insert into clients(names,telephone,type,total,credit,balance) values(@names,@telephone,@type,@total,@credit,@balance)";
+                string addClient = "insert into clients(name,telephone,balance,credit) values(@name,@telephone,@balance,@credit)";
                 MySqlCommand cmd = new MySqlCommand(addClient, con);
-                cmd.Parameters.AddWithValue("@names", name);
+                cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@telephone", phone);
                 cmd.Parameters.AddWithValue("@credit", "0.0");
                 cmd.Parameters.AddWithValue("@balance", "0.0");
@@ -41,7 +41,7 @@ namespace Radita.Classes
             bool result;
 
             con.Open();
-            string checkName = "select * from clients where names='" + str1 + "'";
+            string checkName = "select * from clients where name='" + str1 + "'";
             MySqlCommand cmd = new MySqlCommand(checkName, con);
             MySqlDataReader sdr = cmd.ExecuteReader();
 
@@ -63,7 +63,7 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                string del = "delete from clients where names='" + str1 + "'";
+                string del = "delete from clients where name='" + str1 + "'";
                 MySqlCommand cmd = new MySqlCommand(del, con);
                 cmd.ExecuteNonQuery();
                 con.Close();

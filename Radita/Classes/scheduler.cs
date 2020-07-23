@@ -26,7 +26,7 @@ namespace Radita.Classes
             {
                 con.Open();
 
-                cmd = new MySqlCommand("Insert into scheduler (clientName, clientphone,avance, total, employee, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + employee + "','" + date + "')", con);
+                cmd = new MySqlCommand("insert into scheduler (clientName, clientphone,avance, total, employee, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + employee + "','" + date + "')", con);
                 con.Close();
             }
             catch(Exception e)

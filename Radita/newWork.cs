@@ -120,7 +120,7 @@ namespace Radita
                     allReady = false;
                     break;
                 case 6:
-                    metroProgressSpinner1.Value = progressSplit * 6;
+                    metroProgressSpinner1.Value = 100;
                     allReady = true;
                     break;
                 default:
@@ -201,14 +201,20 @@ namespace Radita
 
             if(!exist)
             {
-                newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text);
-                newClient.ShowDialog();
+                var result= MessageBox.Show("Ce client n'existe pas dans la base de données \nVoulez vous l'ajouter?", "Ajouter nouveau client", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text);
+                    newClient.ShowDialog();
+                }
             }
-            if(allReady)
+            if (allReady)
             {
                 Classes.scheduler work = new Classes.scheduler();
                 work.addNew(metroTextBox1.Text, metroTextBox2.Text, Convert.ToInt64(metroTextBox3.Text), Convert.ToInt64(metroTextBox4.Text), metroComboBox1.Text, metroDateTime1.Text);
             }
+            else
+                MessageBox.Show("Veuillez remplir toutes les cases");
         }
 
         private void clientSelection(object sender, EventArgs e)

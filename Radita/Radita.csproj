@@ -116,6 +116,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="calendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="calendar.Designer.cs">
+      <DependentUpon>calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\calDigits.cs" />
     <Compile Include="Classes\Clients.cs" />
     <Compile Include="Classes\employee.cs" />
     <Compile Include="Classes\scheduler.cs" />
@@ -171,6 +178,9 @@
     <Compile Include="UserAccounts.Designer.cs">
       <DependentUpon>UserAccounts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="calendar.resx">
+      <DependentUpon>calendar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
