@@ -121,11 +121,29 @@
     <Compile Include="Classes\scheduler.cs" />
     <Compile Include="Classes\stock.cs" />
     <Compile Include="Classes\Users.cs" />
+    <Compile Include="ClientAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientAccounts.Designer.cs">
+      <DependentUpon>ClientAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientDeposit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientDeposit.Designer.cs">
+      <DependentUpon>ClientDeposit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewClient.Designer.cs">
+      <DependentUpon>NewClient.cs</DependentUpon>
     </Compile>
     <Compile Include="newOrder.cs">
       <SubType>Form</SubType>
@@ -165,8 +183,17 @@
     <Compile Include="UserAccounts.Designer.cs">
       <DependentUpon>UserAccounts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ClientAccounts.resx">
+      <DependentUpon>ClientAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientDeposit.resx">
+      <DependentUpon>ClientDeposit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewClient.resx">
+      <DependentUpon>NewClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newOrder.resx">
       <DependentUpon>newOrder.cs</DependentUpon>
