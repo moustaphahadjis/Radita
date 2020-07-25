@@ -24,6 +24,7 @@ namespace Radita
             Classes.scheduler scheduler= new Classes.scheduler();
             dtCalendar = scheduler.getAll();
             initList();
+            
         }
 
         void initList()
@@ -59,6 +60,8 @@ namespace Radita
             digits.Add(button32);
             digits.Add(button33);
             digits.Add(button34);
+
+            
         }
         private void calendar_Load(object sender, EventArgs e)
         {
@@ -103,6 +106,44 @@ namespace Radita
                     }
                 }
             }
+        }
+
+        void btnClick(Button btn)
+        {
+            //Reset datagridview
+            if (dataGridView1.Rows.Count > 0)
+                for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
+                {
+                    dataGridView1.Rows.RemoveAt(i);
+                }
+
+            //Adding rows to DatagridView
+            for(int i=0; i<dtCalendar.Rows.Count;i++)
+            {
+                DateTime time = new DateTime(Convert.ToInt32(comboBox2.Text), comboBox1.SelectedIndex + 1, Convert.ToInt32(btn.Text));
+                DateTime time2 = Convert.ToDateTime(dtCalendar.Rows[i].ItemArray[6].ToString());
+                if (time.Month == time2.Month && time.Year == time2.Year && time.Day == time2.Day)
+                {
+                    dataGridView1.Rows.Add(dtCalendar.Rows[i]);
+                }
+            }
+            
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btnClick(btn);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
