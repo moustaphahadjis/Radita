@@ -15,7 +15,7 @@ namespace Radita.Classes
         MySqlConnection con;
         MySqlCommand cmd;
 
-        stock()
+        public stock()
         {
             con = new MySqlConnection("database=radita; port=3306; username=root; password=; datasource= localhost;");
             con.Close();

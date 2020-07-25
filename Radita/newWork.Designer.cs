@@ -118,7 +118,7 @@
             this.metroTextBox1.UseSelectable = true;
             this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.metroTextBox1.Validated += new System.EventHandler(this.clientSelection);
+            this.metroTextBox1.TextChanged += new System.EventHandler(this.clientSelection);
             // 
             // metroTextBox2
             // 
@@ -151,7 +151,7 @@
             this.metroTextBox2.UseSelectable = true;
             this.metroTextBox2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.metroTextBox2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.metroTextBox2.Validated += new System.EventHandler(this.clientSelection);
+            this.metroTextBox2.TextChanged += new System.EventHandler(this.clientSelection);
             // 
             // metroComboBox1
             // 

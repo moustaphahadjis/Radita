@@ -25,24 +25,33 @@ namespace Radita
 
         private void newWork_Load(object sender, EventArgs e)
         {
-
+            refresh();
         }
 
         void refresh()
         {
 
             Classes.employee employees = new Classes.employee();
-            dtEmployees = employees.getAll(); 
+            dtEmployees = employees.getAll();
+            Classes.Clients clients = new Classes.Clients();
+            dtClients = clients.getAll();
             //adding clients and employees to autocomplete;
             metroTextBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             metroTextBox2.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             
 
-            if(dtEmployees.Rows.Count>0)
-                foreach(DataRow row in dtEmployees.Rows)
+            if(dtClients.Rows.Count>0)
+                foreach(DataRow row in dtClients.Rows)
                 {
                     metroTextBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
                     metroTextBox2.AutoCompleteCustomSource.Add(row.ItemArray[2].ToString());
+                }
+
+
+            if (dtEmployees.Rows.Count > 0)
+                foreach(DataRow row in dtEmployees.Rows)
+                {
+                    metroComboBox1.Items.Add(row.ItemArray[1].ToString());
                 }
         }
 
@@ -111,7 +120,7 @@ namespace Radita
                     allReady = false;
                     break;
                 case 6:
-                    metroProgressSpinner1.Value = progressSplit * 6;
+                    metroProgressSpinner1.Value = 100;
                     allReady = true;
                     break;
                 default:
@@ -192,14 +201,20 @@ namespace Radita
 
             if(!exist)
             {
-                NewClient newClient = new NewClient(metroTextBox1.Text, metroTextBox2.Text);
-                newClient.ShowDialog();
+                var result= MessageBox.Show("Ce client n'existe pas dans la base de données \nVoulez vous l'ajouter?", "Ajouter nouveau client", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text);
+                    newClient.ShowDialog();
+                }
             }
-            if(allReady)
+            if (allReady)
             {
                 Classes.scheduler work = new Classes.scheduler();
                 work.addNew(metroTextBox1.Text, metroTextBox2.Text, Convert.ToInt64(metroTextBox3.Text), Convert.ToInt64(metroTextBox4.Text), metroComboBox1.Text, metroDateTime1.Text);
             }
+            else
+                MessageBox.Show("Veuillez remplir toutes les cases");
         }
 
         private void clientSelection(object sender, EventArgs e)
