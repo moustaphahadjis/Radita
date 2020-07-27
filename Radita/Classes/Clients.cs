@@ -15,17 +15,18 @@ namespace Radita.Classes
         private MySqlConnection con = new MySqlConnection("server=localhost;user id=root;database=radita");
 
         /******Method to add record to database******/
-        public void Add(string name, string phone)
+        public void Add(string str1, ulong num1)
         {
+
             try
             {
                 con.Open();
-                string addClient = "insert into clients(name,telephone,balance,credit) values(@name,@telephone,@balance,@credit)";
+                string addClient = "insert into clients(names,telephone,credit,balance) values(@names,@telephone,@credit,@balance)";
                 MySqlCommand cmd = new MySqlCommand(addClient, con);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@telephone", phone);
-                cmd.Parameters.AddWithValue("@credit", "0.0");
-                cmd.Parameters.AddWithValue("@balance", "0.0");
+                cmd.Parameters.AddWithValue("@names", str1);
+                cmd.Parameters.AddWithValue("@telephone", num1);
+                cmd.Parameters.AddWithValue("@credit", 0);
+                cmd.Parameters.AddWithValue("@balance", 0);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -57,6 +58,27 @@ namespace Radita.Classes
             return result;
         }
 
+        /******Method to get balance******/
+        public float GetBalance(string str1, ulong num1)
+        {
+            float result = 0;
+            con.Open();
+            string getBal = "select balance from clients where names='" + str1 + "' && telephone ='" + num1 + "'";
+            MySqlCommand cmd = new MySqlCommand(getBal, con);
+            MySqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                result = sdr.GetFloat(0);
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+            }
+            con.Close();
+            return result;
+        }
+
         /******Method to delete record******/
         public void Delete(string str1)
         {
@@ -74,13 +96,13 @@ namespace Radita.Classes
             }
         }
 
-        /******Method to modify records******/
-        public void Modify(string str0, string str1, string str2, string str3)
+        /******Method to deposit funds******/
+        public void Deposit(string str1, ulong num1, float flo1)
         {
             try
             {
                 con.Open();
-                string mod = "update clients set total='" + str1 + "', credit='" + str2 + "', balance='" + str3 + "' where id='" + str0 + "'";
+                string mod = "update clients set balance='" + flo1 + "' where names='" + str1 + "' && telephone='" + num1 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
