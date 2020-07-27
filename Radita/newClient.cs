@@ -20,15 +20,33 @@ namespace Radita
             phone = tmp2;
         }
 
+        bool isNumber(string tmp)
+        {
+            bool result = true;
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                if (!char.IsDigit(tmp[i]))
+                    result = false;
+            }
+            return result;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrEmpty(metroTextBox1.Text) && !string.IsNullOrEmpty(metroTextBox2.Text))
             {
-                Classes.Clients clients = new Classes.Clients();
-                if (!clients.CheckClient(metroTextBox1.Text))
+                if(isNumber(metroTextBox2.Text) == true)
                 {
-                    clients.Add(metroTextBox1.Text, metroTextBox2.Text);
-                }
+                    Classes.Clients clients = new Classes.Clients();
+                    if (!clients.CheckClient(metroTextBox1.Text))
+                    {
+                        clients.Add(metroTextBox1.Text, Convert.ToUInt64(metroTextBox2.Text));
+                    }
+                } 
+            }
+            else
+            {
+                MessageBox.Show("Invalid Input!");
             }
         }
 
