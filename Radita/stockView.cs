@@ -30,6 +30,7 @@ namespace Radita
                 var ms = new MemoryStream(bytes);
                 bitmap = new Bitmap(ms);
                 row[6] = bitmap;
+                    
             }
             return dt;
         }
