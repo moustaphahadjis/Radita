@@ -65,15 +65,12 @@
     </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.20.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.20\lib\net452\MySql.Data.dll</HintPath>
@@ -128,6 +125,18 @@
     <Compile Include="Classes\scheduler.cs" />
     <Compile Include="Classes\stock.cs" />
     <Compile Include="Classes\Users.cs" />
+    <Compile Include="ClientAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientAccounts.Designer.cs">
+      <DependentUpon>ClientAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientDeposit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientDeposit.Designer.cs">
+      <DependentUpon>ClientDeposit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +201,12 @@
     </Compile>
     <EmbeddedResource Include="calendar.resx">
       <DependentUpon>calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientAccounts.resx">
+      <DependentUpon>ClientAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientDeposit.resx">
+      <DependentUpon>ClientDeposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
