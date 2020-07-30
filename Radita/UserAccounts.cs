@@ -84,19 +84,29 @@ namespace Radita
         {
             Classes.Users temp = new Classes.Users();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Delete User", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                try
                 {
-                    temp.Delete(row.Cells[1].Value.ToString());
-                    GetDataSet();
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        temp.Delete(row.Cells[1].Value.ToString());
+                        GetDataSet();
+                    }
+                    MessageBox.Show("Record(s) deleted Successfully!");
                 }
-                MessageBox.Show("Record(s) deleted Successfully!");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else if (dialogResult == DialogResult.No)
             {
-                MessageBox.Show(ex.ToString());
+                //do something else
             }
+            
         }
 
         private void UserAccounts_Load(object sender, EventArgs e)

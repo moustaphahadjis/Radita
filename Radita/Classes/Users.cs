@@ -64,11 +64,11 @@ namespace Radita.Classes
             try
             {
                 conn.Open();
-                string addUser = "insert into users(username,password,admin,lastname,firstname,secretword) values(@username,@password,@admin,@lastname,@firstname,@secretword)";
+                string addUser = "insert into users(username,password,type,lastname,firstname,secretword) values(@username,@password,@type,@lastname,@firstname,@secretword)";
                 MySqlCommand cmd = new MySqlCommand(addUser, conn);
                 cmd.Parameters.AddWithValue("@username", str1);
                 cmd.Parameters.AddWithValue("@password", str2);
-                cmd.Parameters.AddWithValue("@admin", str3);
+                cmd.Parameters.AddWithValue("@type", str3);
                 cmd.Parameters.AddWithValue("@lastname", str4);
                 cmd.Parameters.AddWithValue("@firstname", str5);
                 cmd.Parameters.AddWithValue("@secretword", str6);
@@ -104,7 +104,7 @@ namespace Radita.Classes
             try
             {
                 conn.Open();
-                string mod = "update users set username='" + str1 + "', password='" + str2 + "', admin='" + str3 + "', lastname='" + str4 + "', firstname='" + str5 + "', secretword='" + str6 + "' where id='" + str0 + "'";
+                string mod = "update users set username='" + str1 + "', password='" + str2 + "', type='" + str3 + "', lastname='" + str4 + "', firstname='" + str5 + "', secretword='" + str6 + "' where id='" + str0 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();

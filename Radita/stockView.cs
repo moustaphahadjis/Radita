@@ -13,7 +13,7 @@ namespace Radita
 {
     public partial class stockView : Form
     {
-
+        private string imglocation = "";
         DataTable dtStock;
         public stockView()
         {
@@ -80,25 +80,42 @@ namespace Radita
         {
             Classes.stock temp = new Classes.stock();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
+
+            DialogResult dialogResult = MessageBox.Show("Are you Sure?", "Delete Item", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                try
                 {
-                    temp.delete(row.Cells[1].Value.ToString());
-                    dtStock = temp.getAll();
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        temp.delete(row.Cells[1].Value.ToString());
+                        dtStock = temp.getAll();
+                    }
+                    MessageBox.Show("Record(s) deleted Successfully!");
                 }
-                MessageBox.Show("Record(s) deleted Successfully!");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else if (dialogResult == DialogResult.No)
             {
-                MessageBox.Show(ex.ToString());
+                //do something else
             }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)  
         {
             Classes.stock temp = new Classes.stock();
             bool exist = false;
+            byte[] imageData;
+
+            FileStream fs = new FileStream(imglocation, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imageData = br.ReadBytes((int)fs.Length);
+            br.Close();
+            fs.Close();
 
             if (metroTextBox1.Text.Trim() != "" && metroTextBox2.Text.Trim() != "" && metroTextBox3.Text.Trim() != "")
             {
@@ -106,7 +123,7 @@ namespace Radita
                     exist = temp.CheckItem(metroTextBox1.Text);
                     if (exist == false)
                     {
-                        temp.addStock(metroTextBox1.Text, Convert.ToDouble(metroTextBox2.Text), float.Parse(metroTextBox3.Text));
+                        temp.addStock(metroTextBox1.Text, Convert.ToDouble(metroTextBox2.Text), float.Parse(metroTextBox3.Text),imageData);
                         MessageBox.Show("User has been created successfully");
                         this.Close();
                     }
@@ -119,6 +136,18 @@ namespace Radita
             else
             {
                 MessageBox.Show("Please fill in empty field(s)!");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image Files(*.jpeg;*.bmp;*.png;*.jpg)|*.jpeg;*.bmp;*.png;*.jpg";
+
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                imglocation = dialog.FileName;
+                pictureBox1.Image = Image.FromFile(dialog.FileName);
             }
         }
     }

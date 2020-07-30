@@ -42,7 +42,7 @@ namespace Radita.Classes
             bool result;
 
             con.Open();
-            string checkName = "select * from clients where name='" + str1 + "'";
+            string checkName = "select * from clients where names='" + str1 + "'";
             MySqlCommand cmd = new MySqlCommand(checkName, con);
             MySqlDataReader sdr = cmd.ExecuteReader();
 
@@ -85,7 +85,7 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                string del = "delete from clients where name='" + str1 + "'";
+                string del = "delete from clients where names='" + str1 + "'";
                 MySqlCommand cmd = new MySqlCommand(del, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
