@@ -70,5 +70,42 @@ namespace Radita.Classes
                 return null;
             }
         }
+
+        public void delete(string str1)
+        {
+            try
+            {
+                con.Open();
+                string del = "delete from stock where name='" + str1 + "'";
+                MySqlCommand cmd = new MySqlCommand(del, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! " + ex.ToString());
+            }
+        }
+
+        public bool CheckItem(string str1)
+        {
+            bool result;
+
+            con.Open();
+            string check = "select * from stock where name='" + str1 + "'";
+            MySqlCommand cmd = new MySqlCommand(check, con);
+            MySqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            con.Close();
+            return result;
+        }
     }
 }
