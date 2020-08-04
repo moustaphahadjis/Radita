@@ -60,5 +60,10 @@ namespace Radita
                 
             }
         }
+
+        private void ClientDeposit_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

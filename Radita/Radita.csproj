@@ -113,6 +113,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addStock.Designer.cs">
+      <DependentUpon>addStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="boutiques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="boutiques.Designer.cs">
+      <DependentUpon>boutiques.cs</DependentUpon>
+    </Compile>
     <Compile Include="calendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,12 +173,6 @@
     <Compile Include="newOrder.Designer.cs">
       <DependentUpon>newOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="leftMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="leftMenu.Designer.cs">
-      <DependentUpon>leftMenu.cs</DependentUpon>
-    </Compile>
     <Compile Include="NewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,12 @@
     <Compile Include="UserAccounts.Designer.cs">
       <DependentUpon>UserAccounts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addStock.resx">
+      <DependentUpon>addStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="boutiques.resx">
+      <DependentUpon>boutiques.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="calendar.resx">
       <DependentUpon>calendar.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +231,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newOrder.resx">
       <DependentUpon>newOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="leftMenu.resx">
-      <DependentUpon>leftMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewUser.resx">
       <DependentUpon>NewUser.cs</DependentUpon>
@@ -279,6 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\699-6998335_bell-sino-notification-notificao-youtube-icon-cone-youtube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\imageTmp.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

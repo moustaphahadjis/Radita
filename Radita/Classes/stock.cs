@@ -38,21 +38,40 @@ namespace Radita.Classes
             }
         }
 
-        public void addStock(string name, double price, float number, byte[] picture)
+        public void addStock(string name, double price, float number, byte[] picture,string unite)
         {
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("Insert into stock (name,price,number,picture) values('" + name + "','" + price + "','" + number + "','" + picture + "')", con);
-                con.Close();
+                cmd = new MySqlCommand("Insert into stock (name,price,number,picture,unite) values('" + name + "','" + price + "','" + number + "',@picture,'"+unite+"')", con);
+                cmd.Parameters.Add("@picture", MySqlDbType.MediumBlob, (int)picture.Length);
+                cmd.Parameters["@picture"].Value = picture;
 
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
             catch(Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
         }
+        public void update(string name, double price, float number, byte[] picture,string unite, int id)
+        {
+            try
+            {
+                con.Open();
+                cmd = new MySqlCommand("update stock set name='" + name + "', price='" + price + "', number='" + number + "',picture= @picture where id='"+id+"'",con);
 
+                cmd.Parameters.AddWithValue("@picture", picture);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
         public DataTable getItem(string name)
         {
             DataTable dt = new DataTable();

@@ -107,7 +107,7 @@ namespace Radita
                     exist = temp.CheckItem(metroTextBox1.Text);
                     if (exist == false)
                     {
-                        temp.addStock(metroTextBox1.Text, Convert.ToDouble(metroTextBox2.Text), float.Parse(metroTextBox3.Text));
+                        //temp.addStock(metroTextBox1.Text, Convert.ToDouble(metroTextBox2.Text), float.Parse(metroTextBox3.Text));
                         MessageBox.Show("User has been created successfully");
                         this.Close();
                     }
