@@ -32,6 +32,7 @@
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox4 = new MetroFramework.Controls.MetroTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -53,7 +53,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(723, 440);
+            this.dataGridView1.Size = new System.Drawing.Size(917, 511);
             this.dataGridView1.TabIndex = 0;
             // 
             // metroButton2
@@ -83,12 +83,23 @@
             this.groupBox1.Controls.Add(this.metroTextBox3);
             this.groupBox1.Controls.Add(this.metroTextBox2);
             this.groupBox1.Controls.Add(this.metroTextBox1);
-            this.groupBox1.Location = new System.Drawing.Point(762, 85);
+            this.groupBox1.Location = new System.Drawing.Point(990, 85);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(318, 440);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(88, 388);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(149, 46);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Add Item";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -232,7 +243,7 @@
             this.metroTextBox4.CustomButton.Visible = false;
             this.metroTextBox4.Lines = new string[] {
         "metroTextBox4"};
-            this.metroTextBox4.Location = new System.Drawing.Point(14, 542);
+            this.metroTextBox4.Location = new System.Drawing.Point(13, 624);
             this.metroTextBox4.MaxLength = 32767;
             this.metroTextBox4.Name = "metroTextBox4";
             this.metroTextBox4.PasswordChar = '\0';
@@ -251,7 +262,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(623, 542);
+            this.button1.Location = new System.Drawing.Point(612, 624);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 49);
             this.button1.TabIndex = 6;
@@ -259,21 +270,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(88, 388);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 46);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Add Item";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(833, 542);
+            this.button3.Location = new System.Drawing.Point(748, 624);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(182, 49);
             this.button3.TabIndex = 8;
@@ -285,7 +285,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 659);
+            this.ClientSize = new System.Drawing.Size(1348, 721);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metroTextBox4);
