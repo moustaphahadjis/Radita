@@ -138,6 +138,11 @@ namespace Radita
             buttonLeave(panel6);
         }
 
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void panel12_Click(object sender, EventArgs e)
         {
             changeMiddlePanel(new boutiques(this));

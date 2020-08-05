@@ -46,7 +46,7 @@ namespace Radita
                         label1.Text = row.ItemArray[2].ToString();
                         label2.Text = row.ItemArray[3].ToString();
                         label3.Text = row.ItemArray[1].ToString();
-                        imageFromByte(row[4].ToString());//,row.ItemArray[4].ToString());
+                        imageFromByte(row[4].ToString());
                         break;
                     }
                 }
@@ -54,7 +54,7 @@ namespace Radita
         }
         void imageFromByte(string value)
         {
-            string path = Environment.CurrentDirectory + @"\Resources\imageTmp.JPG";
+            string path = Path.GetTempPath() + @"\tmp.JPG";
             imageByte = Convert.FromBase64String(value);
 
             File.WriteAllBytes(path, imageByte);

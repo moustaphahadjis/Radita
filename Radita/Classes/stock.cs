@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.ComponentModel.DataAnnotations;
 
 namespace Radita.Classes
 {
@@ -24,11 +25,30 @@ namespace Radita.Classes
         public DataTable getAll()
         {
             DataTable dt = new DataTable();
+            
+            for(int i=0; i<6;i++)
+                dt.Columns.Add();
+            
+            MySqlDataReader data;
             try
             {
                 con.Open();
-                MySqlDataAdapter data = new MySqlDataAdapter("select * from stock",con);
-                data.Fill(dt);
+                cmd= new MySqlCommand("select * from stock",con);
+
+                data=cmd.ExecuteReader();
+                while(data.Read())
+                {
+                    DataRow row = dt.NewRow();
+                    row[0] = data[0];
+                    row[1] = data[1];
+                    row[2] = data[2];
+                    row[3] = data[3];
+                    byte[] tmp = (byte [])data[4];
+                    row[4] = Convert.ToBase64String(tmp);
+                    row[5] = data[5];
+
+                    dt.Rows.Add(row);
+                }
                 con.Close();
                 return dt;
             }
@@ -44,7 +64,7 @@ namespace Radita.Classes
             {
                 con.Open();
                 cmd = new MySqlCommand("Insert into stock (name,price,number,picture,unite) values('" + name + "','" + price + "','" + number + "',@picture,'"+unite+"')", con);
-                cmd.Parameters.Add("@picture", MySqlDbType.MediumBlob, (int)picture.Length);
+                cmd.Parameters.Add("@picture", MySqlDbType.LongBlob, (int)picture.Length);
                 cmd.Parameters["@picture"].Value = picture;
 
                 cmd.ExecuteNonQuery();

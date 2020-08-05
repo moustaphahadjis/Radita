@@ -1,4 +1,5 @@
 ﻿using MetroFramework.Properties;
+using Radita.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,14 +22,14 @@ namespace Radita
         public addStock()
         {
             InitializeComponent();
+            openFileDialog1.Filter = "Image (*.jpg, *.jpeg,*.jp2,*.jfif,*.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void addStock_Load(object sender, EventArgs e)
+        void refresh()
         {
             Classes.stock tmp = new Classes.stock();
             dt = tmp.getAll();
@@ -37,6 +38,10 @@ namespace Radita
             {
                 textBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
             }
+        }
+        private void addStock_Load(object sender, EventArgs e)
+        {
+            refresh();
         }
         void search()
         {
@@ -47,7 +52,7 @@ namespace Radita
                     {
                         selectedID = Convert.ToInt32(row.ItemArray[0].ToString());
                         textBox2.Text = row.ItemArray[2].ToString();
-                        textBox3.Text = row.ItemArray[3].ToString();
+                        textBox3.Text = "1";
                         comboBox1.Text = row.ItemArray[5].ToString();
                         imageFromByte(row.ItemArray[4].ToString ());
 
@@ -84,7 +89,7 @@ namespace Radita
         //Overloaded function to make image out of bytes
         void imageFromByte(string value)
         {
-            string path = Environment.CurrentDirectory + @"\Resources\imageTmp.JPG";
+            string path = Path.GetTempPath() + @"\tmp.JPG";
              imageByte = Convert.FromBase64String(value);
 
             File.WriteAllBytes(path, imageByte);
@@ -95,7 +100,7 @@ namespace Radita
         //here is the second one
         void imageFromPath(string value)
         {
-            string path = @"C:\Users\Tapha Hadji\Documents\Visual Studio 2015\Projects\Radita\Radita\Resources\imageTmp.JPG";
+            string path = Path.GetTempPath()+@"\tmp.JPG";
             try
             {
                 FileStream file = new FileStream(value, FileMode.Open, FileAccess.Read);
@@ -103,11 +108,11 @@ namespace Radita
 
                 imageByte = br.ReadBytes((int)file.Length);
 
-                File.WriteAllBytes(path, imageByte);
+                //File.WriteAllBytes(path, imageByte);
                 file.Close();
                 br.Close();
                 image = Image.FromFile(value);
-                image.Save(path);
+                //image.Save(path);
                 pictureBox1.BackgroundImage = image;
             }
             catch(Exception e)
@@ -122,6 +127,7 @@ namespace Radita
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DataRow rowExist=dt.NewRow();
             if(validated())
             {
                 Classes.stock tmp = new Classes.stock();
@@ -131,17 +137,21 @@ namespace Radita
                     if(row.ItemArray[1].ToString().ToUpper()==textBox1.Text.ToUpper())
                     {
                         exist = true;
+                        rowExist = row;
                         break;
                     }
                 }
                 if(exist)
                 {
-                    tmp.update(textBox1.Text, Convert.ToDouble(textBox2.Text), Convert.ToInt64(textBox3.Text), imageByte, comboBox1.Text, selectedID);
+                    double number = Convert.ToDouble(rowExist[3].ToString()) + Convert.ToInt64(textBox3.Text);
+                    tmp.update(textBox1.Text, Convert.ToDouble(textBox2.Text), (float)number, imageByte, comboBox1.Text, selectedID);
                 }
                 else
                 {
                     tmp.addStock(textBox1.Text, Convert.ToDouble(textBox2.Text), Convert.ToInt64(textBox3.Text), imageByte, comboBox1.Text);
                 }
+
+                refresh();
             }
         }
 
@@ -156,7 +166,10 @@ namespace Radita
                     imageFromPath(path);
                 }
             }
-            catch { }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

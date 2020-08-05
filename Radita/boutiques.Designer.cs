@@ -54,9 +54,9 @@
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 105);
+            this.panel1.Location = new System.Drawing.Point(0, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 37);
+            this.panel1.Size = new System.Drawing.Size(196, 37);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
@@ -80,9 +80,9 @@
             // 
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(12, 148);
+            this.panel2.Location = new System.Drawing.Point(0, 148);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(231, 37);
+            this.panel2.Size = new System.Drawing.Size(196, 37);
             this.panel2.TabIndex = 0;
             this.panel2.Click += new System.EventHandler(this.label2_Click);
             this.panel2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
@@ -105,9 +105,9 @@
             // 
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(12, 191);
+            this.panel3.Location = new System.Drawing.Point(0, 191);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(231, 37);
+            this.panel3.Size = new System.Drawing.Size(196, 37);
             this.panel3.TabIndex = 0;
             this.panel3.Click += new System.EventHandler(this.panel3_Click);
             this.panel3.MouseLeave += new System.EventHandler(this.panel3_MouseLeave);
@@ -130,9 +130,9 @@
             // 
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Location = new System.Drawing.Point(12, 234);
+            this.panel4.Location = new System.Drawing.Point(0, 234);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(231, 37);
+            this.panel4.Size = new System.Drawing.Size(196, 37);
             this.panel4.TabIndex = 0;
             this.panel4.MouseLeave += new System.EventHandler(this.panel4_MouseLeave);
             this.panel4.MouseHover += new System.EventHandler(this.panel4_MouseHover);
