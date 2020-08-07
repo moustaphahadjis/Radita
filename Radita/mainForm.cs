@@ -13,12 +13,13 @@ namespace Radita
     public partial class mainForm : Form
     {
         Form activeMiddleForm, activeRightForm;
-
-        public mainForm()
+        Form loginForm;
+        public mainForm(Form login)
         {
             InitializeComponent();
             activeMiddleForm = null;
             activeRightForm = null;
+            loginForm = login;
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -141,6 +142,21 @@ namespace Radita
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void panel7_Click(object sender, EventArgs e)
+        {
+            changeMiddlePanel(new partenaire(this));
+        }
+
+        private void panel8_Click(object sender, EventArgs e)
+        {
+            changeMiddlePanel(new couture(this));
+        }
+
+        private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Close();
         }
 
         private void panel12_Click(object sender, EventArgs e)

@@ -30,6 +30,12 @@ namespace Radita
             dt = tmp.getAll();
             dtClient = tmp2.getAll();
             metroTextBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            textBox4.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            
+            foreach (DataRow row in dtClient.Rows)
+            {
+                textBox4.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
+            }
             foreach (DataRow row in dt.Rows)
             {
                 metroTextBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
@@ -54,13 +60,17 @@ namespace Radita
         }
         void imageFromByte(string value)
         {
-            string path = Path.GetTempPath() + @"\tmp.JPG";
+            
+            //string path = Path.GetTempPath() + @"\tmp.JPG";
             imageByte = Convert.FromBase64String(value);
 
-            File.WriteAllBytes(path, imageByte);
+            //Bitmap custom = new Bitmap(path);
 
-            image = Image.FromFile(path);
-            pictureBox1.BackgroundImage = image;
+            //File.WriteAllBytes(path, imageByte);
+
+            image = (Bitmap)(new ImageConverter().ConvertFrom(imageByte));
+                pictureBox1.BackgroundImage = image;
+            
         }
         bool validated()
         {
@@ -82,6 +92,11 @@ namespace Radita
         private void metroTextBox1_TextChanged(object sender, EventArgs e)
         {
             search();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

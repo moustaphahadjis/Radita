@@ -89,13 +89,15 @@ namespace Radita
         //Overloaded function to make image out of bytes
         void imageFromByte(string value)
         {
-            string path = Path.GetTempPath() + @"\tmp.JPG";
-             imageByte = Convert.FromBase64String(value);
+            imageByte = Convert.FromBase64String(value);
 
-            File.WriteAllBytes(path, imageByte);
+            //Bitmap custom = new Bitmap(path);
 
-            image = Image.FromFile(path);
+            //File.WriteAllBytes(path, imageByte);
+
+            image = (Bitmap)(new ImageConverter().ConvertFrom(imageByte));
             pictureBox1.BackgroundImage = image;
+
         }
         //here is the second one
         void imageFromPath(string value)

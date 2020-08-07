@@ -117,26 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="53529" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\53529.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMG_1541" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IMG_1541.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="photo-1486312338219-ce68d2c6f44d" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\photo-1486312338219-ce68d2c6f44d.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="49-machine-a-coudre-singer-375x370" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\49-machine-a-coudre-singer-375x370.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="699-6998335_bell-sino-notification-notificao-youtube-icon-cone-youtube" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\699-6998335_bell-sino-notification-notificao-youtube-icon-cone-youtube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devenir-partenaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devenir-partenaire.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="photo-1486312338219-ce68d2c6f44d1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\photo-1486312338219-ce68d2c6f44d1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

@@ -63,6 +63,16 @@ namespace Radita.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _49_machine_a_coudre_singer_375x370 {
+            get {
+                object obj = ResourceManager.GetObject("49-machine-a-coudre-singer-375x370", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _53529 {
             get {
                 object obj = ResourceManager.GetObject("53529", resourceCulture);
@@ -76,6 +86,46 @@ namespace Radita.Properties {
         internal static System.Drawing.Bitmap _699_6998335_bell_sino_notification_notificao_youtube_icon_cone_youtube {
             get {
                 object obj = ResourceManager.GetObject("699-6998335_bell-sino-notification-notificao-youtube-icon-cone-youtube", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap devenir_partenaire {
+            get {
+                object obj = ResourceManager.GetObject("devenir-partenaire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_1541 {
+            get {
+                object obj = ResourceManager.GetObject("IMG_1541", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_1486312338219_ce68d2c6f44d {
+            get {
+                object obj = ResourceManager.GetObject("photo-1486312338219-ce68d2c6f44d", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_1486312338219_ce68d2c6f44d1 {
+            get {
+                object obj = ResourceManager.GetObject("photo-1486312338219-ce68d2c6f44d1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

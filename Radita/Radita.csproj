@@ -134,6 +134,7 @@
     <Compile Include="Classes\calDigits.cs" />
     <Compile Include="Classes\Clients.cs" />
     <Compile Include="Classes\employee.cs" />
+    <Compile Include="Classes\historique.cs" />
     <Compile Include="Classes\scheduler.cs" />
     <Compile Include="Classes\stock.cs" />
     <Compile Include="Classes\Users.cs" />
@@ -148,6 +149,18 @@
     </Compile>
     <Compile Include="ClientDeposit.Designer.cs">
       <DependentUpon>ClientDeposit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="couture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="couture.Designer.cs">
+      <DependentUpon>couture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="historique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="historique.Designer.cs">
+      <DependentUpon>historique.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -185,6 +198,12 @@
     <Compile Include="newWork.Designer.cs">
       <DependentUpon>newWork.cs</DependentUpon>
     </Compile>
+    <Compile Include="partenaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="partenaire.Designer.cs">
+      <DependentUpon>partenaire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stockView.cs">
@@ -220,6 +239,12 @@
     <EmbeddedResource Include="ClientDeposit.resx">
       <DependentUpon>ClientDeposit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="couture.resx">
+      <DependentUpon>couture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="historique.resx">
+      <DependentUpon>historique.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newWork.resx">
       <DependentUpon>newWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="partenaire.resx">
+      <DependentUpon>partenaire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -290,7 +318,14 @@
     <None Include="Resources\699-6998335_bell-sino-notification-notificao-youtube-icon-cone-youtube.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\imageTmp.JPG" />
+    <None Include="Resources\devenir-partenaire.jpg" />
+    <None Include="Resources\49-machine-a-coudre-singer-375x370.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-1486312338219-ce68d2c6f44d.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-1486312338219-ce68d2c6f44d1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

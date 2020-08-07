@@ -127,7 +127,7 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(391, 272);
+            this.button1.Location = new System.Drawing.Point(408, 359);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(172, 31);
             this.button1.TabIndex = 4;
@@ -140,7 +140,7 @@
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(255, 351);
+            this.button2.Location = new System.Drawing.Point(156, 382);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 56);
             this.button2.TabIndex = 5;
@@ -153,9 +153,9 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Gray;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(391, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(391, 43);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 194);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 300);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 

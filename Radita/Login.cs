@@ -24,12 +24,20 @@ namespace Radita
             check = temp.CheckPass(textBox1.Text, textBox2.Text);
             if (check == true)
             {
-                MessageBox.Show("Welcome!");
+                //MessageBox.Show("Welcome!");
+                mainForm form = new mainForm(this);
+                form.Show();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show("Incorrect Username or Password!");
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
