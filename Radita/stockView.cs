@@ -40,7 +40,7 @@ namespace Radita
             dtStock = stock.getAll();
             
             dataGridView1.DataSource = dtStock;
-            
+            dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
         }
 
         bool isNumber(string tmp)
@@ -56,7 +56,7 @@ namespace Radita
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string searchVal = metroTextBox4.Text;
+            string searchVal = metroTextBox1.Text;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ClearSelection();
 
@@ -98,29 +98,8 @@ namespace Radita
 
         private void button2_Click(object sender, EventArgs e)  
         {
-            Classes.stock temp = new Classes.stock();
-            bool exist = false;
-
-            if (metroTextBox1.Text.Trim() != "" && metroTextBox2.Text.Trim() != "" && metroTextBox3.Text.Trim() != "")
-            {
-                if(isNumber(metroTextBox2.Text) == true && isNumber(metroTextBox3.Text) == true){
-                    exist = temp.CheckItem(metroTextBox1.Text);
-                    if (exist == false)
-                    {
-                        //temp.addStock(metroTextBox1.Text, Convert.ToDouble(metroTextBox2.Text), float.Parse(metroTextBox3.Text));
-                        MessageBox.Show("User has been created successfully");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("User already exists!");
-                    }
-                }   
-            }
-            else
-            {
-                MessageBox.Show("Please fill in empty field(s)!");
-            }
+            Form a1 = new addStock();
+            a1.Show();
         }
     }
 }
