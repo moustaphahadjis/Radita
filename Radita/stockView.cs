@@ -40,7 +40,6 @@ namespace Radita
             dtStock = stock.getAll();
             
             dataGridView1.DataSource = dtStock;
-            dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
         }
 
         bool isNumber(string tmp)
