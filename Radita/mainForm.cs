@@ -13,8 +13,8 @@ namespace Radita
     public partial class mainForm : Form
     {
         Form activeMiddleForm, activeRightForm;
-        Form loginForm;
-        public mainForm(Form login)
+        Login loginForm;
+        public mainForm(Login login)
         {
             InitializeComponent();
             activeMiddleForm = null;
@@ -52,6 +52,7 @@ namespace Radita
             activeRightForm.TopLevel = false;
             activeRightForm.Dock = DockStyle.Fill;
             panel13.Controls.Add(activeRightForm);
+           
             activeRightForm.Show();
         }
         public void changeMiddlePanel(Form form)
@@ -70,53 +71,27 @@ namespace Radita
         }
         void buttonHover(Panel panel)
         {
-            panel.BackColor=Color.FromArgb(53, 53, 53);
-            Cursor = Cursors.Hand;
+            try
+            {
+                panel.BackColor = Color.FromArgb(53, 53, 53);
+                Cursor = Cursors.Hand;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
         void buttonLeave(Panel panel)
         {
-            panel.BackColor = panel1.BackColor;
-            Cursor=Cursors.Default;
-        }
-
-        private void panel12_MouseHover(object sender, EventArgs e)
-        {
-            buttonHover(panel12);
-        }
-
-        private void panel12_MouseLeave(object sender, EventArgs e)
-        {
-            buttonLeave(panel12);
-        }
-
-        private void label4_MouseHover(object sender, EventArgs e)
-        {
-            buttonHover(panel12);
-        }
-
-        private void label4_MouseLeave(object sender, EventArgs e)
-        {
-            buttonLeave(panel12);
-        }
-
-        private void panel7_MouseHover(object sender, EventArgs e)
-        {
-            buttonHover(panel7);
-        }
-
-        private void panel7_MouseLeave(object sender, EventArgs e)
-        {
-            buttonLeave(panel7);
-        }
-
-        private void panel8_MouseHover(object sender, EventArgs e)
-        {
-            buttonHover(panel8);
-        }
-
-        private void panel8_MouseLeave(object sender, EventArgs e)
-        {
-            buttonLeave(panel8);
+            try
+            {
+                panel.BackColor = panel1.BackColor;
+                Cursor = Cursors.Default;
+            }  
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }
 
         private void panel3_MouseHover(object sender, EventArgs e)
@@ -129,15 +104,7 @@ namespace Radita
             buttonLeave(panel3);
         }
 
-        private void panel6_MouseHover(object sender, EventArgs e)
-        {
-            buttonHover(panel6);
-        }
-
-        private void panel6_MouseLeave(object sender, EventArgs e)
-        {
-            buttonLeave(panel6);
-        }
+        
 
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
@@ -157,6 +124,32 @@ namespace Radita
         private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Close();
+        }
+
+        private void panel13_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            changeMiddlePanel(new boutiques(this));
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changeMiddlePanel(new couture(this));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            changeMiddlePanel(new partenaire(this));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            checkPassword tmp = new checkPassword(loginForm.username);
+            tmp.ShowDialog();
         }
 
         private void panel12_Click(object sender, EventArgs e)

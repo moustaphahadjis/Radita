@@ -13,11 +13,13 @@ namespace Radita
     public partial class newClient : Form
     {
         string name, phone;
-        public newClient(string tmp1, string tmp2)
+        bool close;
+        public newClient(string tmp1, string tmp2, bool tmp3)
         {
             InitializeComponent();
             name = tmp1;
             phone = tmp2;
+            close = tmp3;
         }
 
         bool isNumber(string tmp)
@@ -33,14 +35,14 @@ namespace Radita
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(metroTextBox1.Text) && !string.IsNullOrEmpty(metroTextBox2.Text))
+            if(!string.IsNullOrEmpty(metroTextBox1.Text) && !string.IsNullOrEmpty(metroTextBox2.Text) && !string.IsNullOrEmpty(metroTextBox3.Text) && !string.IsNullOrEmpty(metroTextBox4.Text))
             {
-                if(isNumber(metroTextBox2.Text) == true)
+                if(isNumber(metroTextBox2.Text) && isNumber(metroTextBox3.Text) && isNumber(metroTextBox4.Text))
                 {
                     Classes.Clients clients = new Classes.Clients();
                     if (!clients.CheckClient(metroTextBox1.Text))
                     {
-                        clients.Add(metroTextBox1.Text, Convert.ToUInt64(metroTextBox2.Text));
+                        clients.Add(metroTextBox1.Text, metroTextBox2.Text, metroTextBox3.Text, metroTextBox4.Text);
                     }
                 } 
             }
@@ -48,12 +50,17 @@ namespace Radita
             {
                 MessageBox.Show("Invalid Input!");
             }
+
+            if (close)
+                this.Close();
         }
 
         private void newClient_Load(object sender, EventArgs e)
         {
             metroTextBox1.Text = name;
             metroTextBox2.Text = phone;
+            Classes.design design = new Classes.design();
+            button1 = design.button(button1);
         }
     }
 }

@@ -42,11 +42,23 @@ namespace Radita
                 MessageBox.Show(ex.ToString());
             }
         }
-
-        private void ClientAccounts_Load(object sender, EventArgs e)
+        void refresh()
         {
             dataGridView1.DataSource = bindingSource1;
             GetDataSet();
+            dataGridView1.Columns[1].HeaderText = "Noms";
+            dataGridView1.Columns[4].HeaderText = "solde";
+            Classes.design design = new Classes.design();
+            dataGridView1 = design.datagridview(dataGridView1);
+
+            button1 = design.button(button1);
+            button2 = design.button(button2);
+            button3 = design.button(button3);
+            button4 = design.button(button4);
+        }
+        private void ClientAccounts_Load(object sender, EventArgs e)
+        {
+            refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -74,14 +86,15 @@ namespace Radita
 
         private void button2_Click(object sender, EventArgs e)
         {
-            newClient a1 = new newClient("","");
-            a1.Show();
+            newClient a1 = new newClient("","",true);
+            a1.Closed += (s, args) => this.refresh();
+            a1.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ClientDeposit a1 = new ClientDeposit();
-            a1.Show();
+            //ClientDeposit a1 = new ClientDeposit();
+            //a1.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)

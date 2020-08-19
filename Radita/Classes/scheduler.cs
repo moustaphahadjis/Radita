@@ -20,13 +20,13 @@ namespace Radita.Classes
             con.Close();
         }
 
-        public void addNew(string clientName, string clientPhone, float avance, float total, string employee, string date)
+        public void addNew(string clientName, string clientPhone, string avance, string total, string reste, string date)
         {
             try
             {
                 con.Open();
 
-                cmd = new MySqlCommand("insert into scheduler (clientName, clientphone,avance, total, employee, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + employee + "','" + date + "')", con);
+                cmd = new MySqlCommand("insert into scheduler (clientName, clientphone,avance, total, reste, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + reste + "','" + date + "')", con);
                 con.Close();
             }
             catch(Exception e)
@@ -34,14 +34,30 @@ namespace Radita.Classes
                 MessageBox.Show(e.ToString());
             }
         }
-        public void modify(int id,string clientName, string clientPhone, string employee, string date)
+        public void addNew(string clientName, string clientPhone, string avance, string total, string date)
+        {
+            double reste = Convert.ToDouble(total) - Convert.ToDouble(avance);
+            try
+            {
+                con.Open();
+
+                cmd = new MySqlCommand("insert into scheduler (clientName, clientphone,avance, total, reste, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + reste + "','" + date + "')", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+        public void modify(int id,string clientName, string clientPhone, string avance, string total, string reste, string date)
         {
             //Modify details by only using the ID
             try
             {
                 con.Open();
 
-                cmd = new MySqlCommand("update scheduler set clientName='" + clientName + "', clientphone='" + clientPhone + "', employee='" + employee + "', date='" + date + "' where id='"+id+"'", con);
+                cmd = new MySqlCommand("update scheduler set clientName='" + clientName + "', clientphone='" + clientPhone + "', avance='" + avance + "',reste='" + reste + "',total='" + total + "', date='" + date + "' where id='"+id+"'", con);
                 con.Close();
             }
             catch (Exception e)
@@ -74,6 +90,7 @@ namespace Radita.Classes
                 con.Open();
 
                 cmd = new MySqlCommand("delete from scheduler where id ='" + id + "'", con);
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)

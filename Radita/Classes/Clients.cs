@@ -21,7 +21,7 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                string addClient = "insert into clients(names,telephone,credit,balance) values(@names,@telephone,@credit,@balance)";
+                string addClient = "insert into clients(name,telephone,credit,balance) values(@names,@telephone,@credit,@balance)";
                 MySqlCommand cmd = new MySqlCommand(addClient, con);
                 cmd.Parameters.AddWithValue("@names", str1);
                 cmd.Parameters.AddWithValue("@telephone", num1);
@@ -59,11 +59,11 @@ namespace Radita.Classes
         }
 
         /******Method to get balance******/
-        public float GetBalance(string str1, ulong num1)
+        public float GetBalance(string id)
         {
             float result = 0;
             con.Open();
-            string getBal = "select balance from clients where names='" + str1 + "' && telephone ='" + num1 + "'";
+            string getBal = "select balance from clients where id='" + id+"'";
             MySqlCommand cmd = new MySqlCommand(getBal, con);
             MySqlDataReader sdr = cmd.ExecuteReader();
 
@@ -80,12 +80,12 @@ namespace Radita.Classes
         }
 
         /******Method to delete record******/
-        public void Delete(string str1)
+        public void Delete(string id)
         {
             try
             {
                 con.Open();
-                string del = "delete from clients where name='" + str1 + "'";
+                string del = "delete from clients where id='" + id + "'";
                 MySqlCommand cmd = new MySqlCommand(del, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -102,7 +102,7 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                string mod = "update clients set balance='" + flo1 + "' where names='" + str1 + "' && telephone='" + num1 + "'";
+                string mod = "update clients set balance='" + flo1 + "' where name='" + str1 + "' && telephone='" + num1 + "'";
                 MySqlCommand cmd = new MySqlCommand(mod, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -112,7 +112,19 @@ namespace Radita.Classes
                 MessageBox.Show("Error! " + ex.ToString());
             }
         }
-
+        public void rembourser(string id, string montant)
+        {
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("Update clients set credit=" + montant + " where id=" + id + "", con);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
         public DataTable getAll()
         {
             try
@@ -128,6 +140,60 @@ namespace Radita.Classes
             {
                 MessageBox.Show(e.ToString());
                 return null;
+            }
+        }
+        public void addBalance(string id, string balance)
+        {
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("Update clients set balance = '" + balance + "' where id='" + id + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+        public void addCredit(string id,string credit)
+        {
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select credit from clients where id='" + id + "'", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if(reader.Read())
+                {
+                    credit = (Convert.ToDouble(credit) + reader.GetDouble(0)).ToString();
+                }
+                cmd = new MySqlCommand("update clients set creddit='" + credit + "' where id='" + id + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+        public void Add(string name, string telephone, string credit, string balance)
+        {
+
+            try
+            {
+                con.Open();
+                string addClient = "insert into clients(name,telephone,credit,balance) values(@names,@telephone,@credit,@balance)";
+                MySqlCommand cmd = new MySqlCommand(addClient, con);
+                cmd.Parameters.AddWithValue("@names", name);
+                cmd.Parameters.AddWithValue("@telephone", telephone);
+                cmd.Parameters.AddWithValue("@credit", credit);
+                cmd.Parameters.AddWithValue("@balance", balance);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! " + ex.ToString());
             }
         }
     }

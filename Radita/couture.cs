@@ -60,12 +60,32 @@ namespace Radita
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            //main.changeRightPanel((Form)new coutureView());
+            main.changeRightPanel((Form)new contrat());
         }
 
         private void panel3_Click(object sender, EventArgs e)
         {
             main.changeRightPanel((Form)new calendar());
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            main.changeRightPanel((Form)new newWork());
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

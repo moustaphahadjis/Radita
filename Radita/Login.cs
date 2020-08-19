@@ -12,6 +12,7 @@ namespace Radita
 {
     public partial class Login : Form
     {
+        public string username;
         public Login()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Radita
             if (check == true)
             {
                 //MessageBox.Show("Welcome!");
+                username = textBox1.Text;
                 mainForm form = new mainForm(this);
                 form.Show();
                 this.Hide();
@@ -38,6 +40,11 @@ namespace Radita
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

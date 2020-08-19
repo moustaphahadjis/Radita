@@ -101,8 +101,13 @@ namespace Radita
 
         private void panel3_Click(object sender, EventArgs e)
         {
-            main.changeRightPanel((Form)new addStock());
+            main.changeRightPanel((Form)new addStock(false));
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            main.changeRightPanel((Form)(new historique()));
         }
     }
 }

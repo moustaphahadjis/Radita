@@ -10,22 +10,15 @@ using System.Windows.Forms;
 
 namespace Radita
 {
-    public partial class historique : Form
+    public partial class historiqueCouture : Form
     {
-        DataTable dt = new DataTable();
-        public historique()
+        public historiqueCouture()
         {
             InitializeComponent();
         }
 
-        private void historique_Load(object sender, EventArgs e)
+        private void historiqueCouture_Load(object sender, EventArgs e)
         {
-            Classes.historique tmp = new Classes.historique();
-            dt = tmp.getAll();
-            
-            dataGridView1.DataSource = dt;
-            dataGridView1.Columns[1].HeaderText = "Noms";
-            dataGridView1.Columns[3].HeaderText = "nombre";
             Classes.design design = new Classes.design();
             dataGridView1 = design.datagridview(dataGridView1);
         }

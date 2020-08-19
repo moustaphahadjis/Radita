@@ -19,10 +19,12 @@ namespace Radita
         Image image;
         int selectedID;
         byte[] imageByte;
-        public addStock()
+        bool close;
+        public addStock(bool val)
         {
             InitializeComponent();
             openFileDialog1.Filter = "Image (*.jpg, *.jpeg,*.jp2,*.jfif,*.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            close = val;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -38,6 +40,10 @@ namespace Radita
             {
                 textBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
             }
+            Classes.design design = new Classes.design();
+            button1 = design.button(button1);
+            button2 = design.button(button2);
+
         }
         private void addStock_Load(object sender, EventArgs e)
         {
@@ -54,7 +60,7 @@ namespace Radita
                         textBox2.Text = row.ItemArray[2].ToString();
                         textBox3.Text = "1";
                         comboBox1.Text = row.ItemArray[5].ToString();
-                        imageFromByte(row.ItemArray[4].ToString ());
+                        imageFromByte((byte [])row.ItemArray[4]);
 
                         break;
                     }
@@ -87,15 +93,15 @@ namespace Radita
             return result;
         }
         //Overloaded function to make image out of bytes
-        void imageFromByte(string value)
+        void imageFromByte(byte [] value)
         {
-            imageByte = Convert.FromBase64String(value);
+            //imageByte = Convert.FromBase64String(value);
 
             //Bitmap custom = new Bitmap(path);
 
             //File.WriteAllBytes(path, imageByte);
 
-            image = (Bitmap)(new ImageConverter().ConvertFrom(imageByte));
+            image = (Image)(new ImageConverter().ConvertFrom(value));
             pictureBox1.BackgroundImage = image;
 
         }
@@ -147,10 +153,14 @@ namespace Radita
                 {
                     double number = Convert.ToDouble(rowExist[3].ToString()) + Convert.ToInt64(textBox3.Text);
                     tmp.update(textBox1.Text, Convert.ToDouble(textBox2.Text), (float)number, imageByte, comboBox1.Text, selectedID);
+                    if (close)
+                        this.Close();
                 }
                 else
                 {
                     tmp.addStock(textBox1.Text, Convert.ToDouble(textBox2.Text), Convert.ToInt64(textBox3.Text), imageByte, comboBox1.Text);
+                    if (close)
+                        this.Close();
                 }
 
                 refresh();

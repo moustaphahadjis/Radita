@@ -21,8 +21,24 @@ namespace Radita.Classes
             con = new MySqlConnection("database=radita; port=3306; username=root; password=; datasource= localhost;");
             con.Close();
         }
-
         public DataTable getAll()
+        {
+            try
+            {
+                con.Open();
+                MySqlDataAdapter data = new MySqlDataAdapter("select * from stock", con);
+                DataTable dt = new DataTable();
+                con.Close();
+                data.Fill(dt);
+                return dt;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
+        }
+        public DataTable getAllllll()
         {
             DataTable dt = new DataTable();
             

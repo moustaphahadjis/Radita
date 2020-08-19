@@ -19,7 +19,9 @@ namespace Radita
 
         private void NewUser_Load(object sender, EventArgs e)
         {
-
+            Classes.design design = new Classes.design();
+            button1 = design.button(button1);
+            button2 = design.button(button2);
         }
 
         private void button1_Click(object sender, EventArgs e)

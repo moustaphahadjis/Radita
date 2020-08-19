@@ -74,35 +74,68 @@ namespace Radita
 
             }
 
+            //dataGridView1.DataSource = data;
             
-        }
+           
 
+            dataGridView1.Columns.Add("id", "id");
+            dataGridView1.Columns.Add("1", "Client");
+            dataGridView1.Columns.Add("2", "Telephone");
+            dataGridView1.Columns.Add("3", "Avance");
+            dataGridView1.Columns.Add("4", "Total");
+            dataGridView1.Columns.Add("5", "Reste");
+            dataGridView1.Columns.Add("6", "Date");
+            Classes.design design = new Classes.design();
+            dataGridView1 = design.datagridview(dataGridView1);
+        }
+        bool isNumber(string tmp)
+        {
+            bool result = true;
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                if (!char.IsDigit(tmp[i]))
+                    result = false;
+            }
+            return result;
+        }
         private void comboBox2_TextChanged(object sender, EventArgs e)
         {
-                        //choosing which digig to show
+                        //choosing which digit to show
             if (!string.IsNullOrEmpty(comboBox1.Text) && !string.IsNullOrEmpty(comboBox2.Text))
             {
-                int days = DateTime.DaysInMonth(Convert.ToInt32(comboBox2.SelectedItem), comboBox1.SelectedIndex + 1);
-                for (int i = 0; i < digits.Count; i++)
+                if (isNumber(comboBox2.Text))
                 {
-                    if (Convert.ToInt32(digits[i].Text) <= days)
-                    {
-                        digits[i].Visible = true;
-                        digits[i].Enabled = true;
 
-                        for(int j=0; j<dtCalendar.Rows.Count;j++)
+                    int days = DateTime.DaysInMonth(Convert.ToInt32(comboBox2.SelectedItem), comboBox1.SelectedIndex + 1);
+                    for (int i = 0; i < digits.Count; i++)
+                    {
+                        if (Convert.ToInt32(digits[i].Text) < days)
                         {
-                            DateTime tmp1 = Convert.ToDateTime(dtCalendar.Rows[j].ItemArray[6].ToString());
-                            DateTime tmp2 = new DateTime(Convert.ToInt32(comboBox2.SelectedItem), comboBox1.SelectedIndex + 1, i);
+                            digits[i].Visible = true;
+                            digits[i].Enabled = true;
+                            digits[i].BackColor = Color.White;
 
-                            if (tmp1.Month == tmp2.Month && tmp1.Year == tmp2.Year && tmp1.Day == tmp2.Day)
-                                digits[i].BackColor = Color.Blue;
+                            for (int j = 0; j < dtCalendar.Rows.Count; j++)
+                            {
+                                DateTime tmp1 = Convert.ToDateTime(dtCalendar.Rows[j].ItemArray[6].ToString());
+                                DateTime tmp2 = new DateTime(Convert.ToInt32(comboBox2.Text), comboBox1.SelectedIndex + 1, Convert.ToInt32(digits[i].Text));
+
+                                //if (tmp1.Month == tmp2.Month && tmp1.Year == tmp2.Year && tmp1.Day == tmp2.Day)
+                                if(tmp1.CompareTo(tmp2)==0)
+                                {
+                                    digits[i].BackColor = System.Drawing.Color.FromArgb(0, 212, 144);
+                                }
+                                //else
+                                    //digits[i].BackColor = Color.Transparent;
+                            }
                         }
-                    }
-                    else
-                    {
-                        digits[i].Visible = false;
-                        digits[i].Enabled = false;
+                        else
+                        {
+                            digits[i].Visible = false;
+                            digits[i].Enabled = false;
+                            digits[i].BackColor = Color.White;
+                        }
+
                     }
                 }
             }
@@ -118,13 +151,14 @@ namespace Radita
                 }
 
             //Adding rows to DatagridView
-            for(int i=0; i<dtCalendar.Rows.Count;i++)
+            foreach(DataRow row in dtCalendar.Rows)
             {
                 DateTime time = new DateTime(Convert.ToInt32(comboBox2.Text), comboBox1.SelectedIndex + 1, Convert.ToInt32(btn.Text));
-                DateTime time2 = Convert.ToDateTime(dtCalendar.Rows[i].ItemArray[6].ToString());
+                DateTime time2 = Convert.ToDateTime(row[6].ToString());
                 if (time.Month == time2.Month && time.Year == time2.Year && time.Day == time2.Day)
                 {
-                    dataGridView1.Rows.Add(dtCalendar.Rows[i]);
+                    
+                    dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
                 }
             }
             
@@ -142,6 +176,11 @@ namespace Radita
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -40,25 +40,28 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 34);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 49);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(799, 454);
+            this.dataGridView1.Size = new System.Drawing.Size(655, 458);
             this.dataGridView1.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 513);
+            this.textBox1.Location = new System.Drawing.Point(11, 11);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(418, 22);
+            this.textBox1.Size = new System.Drawing.Size(314, 20);
             this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(466, 511);
+            this.button1.Location = new System.Drawing.Point(352, 9);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 44);
+            this.button1.Size = new System.Drawing.Size(76, 36);
             this.button1.TabIndex = 2;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(893, 68);
+            this.button2.Location = new System.Drawing.Point(670, 55);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 82);
+            this.button2.Size = new System.Drawing.Size(102, 67);
             this.button2.TabIndex = 3;
             this.button2.Text = "Create User";
             this.button2.UseVisualStyleBackColor = true;
@@ -76,9 +80,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(893, 193);
+            this.button3.Location = new System.Drawing.Point(670, 157);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 86);
+            this.button3.Size = new System.Drawing.Size(102, 70);
             this.button3.TabIndex = 4;
             this.button3.Text = "Modify User";
             this.button3.UseVisualStyleBackColor = true;
@@ -86,9 +91,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(893, 318);
+            this.button4.Location = new System.Drawing.Point(670, 258);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(136, 79);
+            this.button4.Size = new System.Drawing.Size(102, 64);
             this.button4.TabIndex = 5;
             this.button4.Text = "Delete User";
             this.button4.UseVisualStyleBackColor = true;
@@ -96,15 +102,16 @@
             // 
             // UserAccounts
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 637);
+            this.ClientSize = new System.Drawing.Size(814, 518);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UserAccounts";
             this.Text = "UserAccounts";
             this.Load += new System.EventHandler(this.UserAccounts_Load);

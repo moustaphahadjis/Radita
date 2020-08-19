@@ -21,25 +21,54 @@ namespace Radita
             dtStock = new DataTable();
         }
 
-        DataTable createImage(DataTable dt)
+        void createImage(DataGridView dt)
         {
-            foreach (DataRow row in dt.Rows)
+            DataGridViewImageColumn column = new DataGridViewImageColumn();
+            column.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            column.Dispose();
+            dt.Columns.Add(column);
+            foreach (DataGridViewRow row in dt.Rows)
             {
-                byte[] bytes = (byte[])row.ItemArray[4];
-                Bitmap bitmap;
-                var ms = new MemoryStream(bytes);
-                bitmap = new Bitmap(ms);
-                row[6] = bitmap;
+                
+                if (!String.IsNullOrEmpty(row.Cells[4].Value.ToString()))
+                {
                     
+                    byte[] bytes = Convert.FromBase64String(row.Cells[4].Value.ToString());
+                    Image image;
+                    image = (Bitmap)(new ImageConverter().ConvertFrom(bytes));
+                    
+                    //row.Cells[4].ValueType = new DataGridViewImageCell();
+                    row.Cells[6].Value = image;
+                }
             }
-            return dt;
         }
-        private void stockView_Load(object sender, EventArgs e)
+        void refresh()
         {
             Classes.stock stock = new Classes.stock();
             dtStock = stock.getAll();
-            
             dataGridView1.DataSource = dtStock;
+
+            dataGridView1.Columns[1].HeaderText = "noms";
+            dataGridView1.Columns[2].HeaderText = "Prix";
+            dataGridView1.Columns[3].HeaderText = "Nombre";
+            dataGridView1.Columns[4].HeaderText = "Image";
+            dataGridView1.Columns[5].HeaderText = "Unité";
+            Classes.design design = new Classes.design();
+            dataGridView1 = design.datagridview(dataGridView1);
+            //dataGridView1.Size = new Size(dataGridView1.Size.Width, 50);
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                if (col is DataGridViewImageColumn)
+                    ((DataGridViewImageColumn)(col)).ImageLayout = DataGridViewImageCellLayout.Stretch;
+            }
+            button1 = design.button(button1);
+            button2 = design.button(button2);
+            button3 = design.button(button3);
+            //createImage(dataGridView1);
+        }
+        private void stockView_Load(object sender, EventArgs e)
+        {
+            refresh();
         }
 
         bool isNumber(string tmp)
@@ -78,27 +107,33 @@ namespace Radita
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Classes.stock temp = new Classes.stock();
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
+            if (MessageBox.Show("Voulez Vous vraiment supprimer cet article?", "Supprimer", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                Classes.stock temp = new Classes.stock();
+                try
                 {
-                    temp.delete(row.Cells[1].Value.ToString());
-                    dtStock = temp.getAll();
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        temp.delete(row.Cells[1].Value.ToString());
+                        dtStock = temp.getAll();
+                        refresh();
+                    }
+                    MessageBox.Show("Cet article a été supprimé!");
                 }
-                MessageBox.Show("Record(s) deleted Successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)  
         {
-            Form a1 = new addStock();
-            a1.Show();
+            Form a1 = new addStock(true);
+
+            a1.Closed += (s, args) => this.refresh();
+            
+            a1.ShowDialog();
         }
     }
 }

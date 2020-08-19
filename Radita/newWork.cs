@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Radita
 {
-    public partial class newWork : MetroFramework.Forms.MetroForm
+    public partial class newWork : Form
     {
         int progressCounter;
         bool allReady;
 
-        DataTable dtClients, dtEmployees;
+        DataTable dtClients;
         public newWork()
         {
             InitializeComponent();
@@ -31,8 +32,6 @@ namespace Radita
         void refresh()
         {
 
-            Classes.employee employees = new Classes.employee();
-            dtEmployees = employees.getAll();
             Classes.Clients clients = new Classes.Clients();
             dtClients = clients.getAll();
             //adding clients and employees to autocomplete;
@@ -48,11 +47,8 @@ namespace Radita
                 }
 
 
-            if (dtEmployees.Rows.Count > 0)
-                foreach(DataRow row in dtEmployees.Rows)
-                {
-                    metroComboBox1.Items.Add(row.ItemArray[1].ToString());
-                }
+            Classes.design design = new Classes.design();
+            button1 = design.button(button1);
         }
 
         private void metroPanel1_Paint(object sender, PaintEventArgs e)
@@ -84,10 +80,7 @@ namespace Radita
                     {
                         counter++;
                     }
-            if (!string.IsNullOrEmpty(metroComboBox1.Text))
-            {
-                counter++;
-            }
+            
             if (metroDateTime1.Value.CompareTo(DateTime.Now) >= 0)
             {
                 counter++;
@@ -95,7 +88,7 @@ namespace Radita
 
             progressCounter = counter;
 
-            int progressSplit = 100 / 6;
+            int progressSplit = 100 / 5;
 
             switch (progressCounter)
             {
@@ -117,10 +110,6 @@ namespace Radita
                     break;
                 case 5:
                     metroProgressSpinner1.Value = progressSplit * 5;
-                    allReady = false;
-                    break;
-                case 6:
-                    metroProgressSpinner1.Value = 100;
                     allReady = true;
                     break;
                 default:
@@ -154,10 +143,7 @@ namespace Radita
                     {
                         counter++;
                     }
-            if (!string.IsNullOrEmpty(metroComboBox1.Text))
-            {
-                counter++;
-            }
+           
             if (metroDateTime1.Value.Date.DayOfYear>(DateTime.Now.Date.DayOfYear) && metroDateTime1.Value.Date.Year > (DateTime.Now.Date.Year))
             {
                 counter++;
@@ -189,32 +175,41 @@ namespace Radita
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             //check if client is in the database
             bool exist = false;
-            foreach(DataRow row in dtClients.Rows)
+            foreach (DataRow row in dtClients.Rows)
             {
-                if(metroTextBox1.Text==row.ItemArray[1].ToString() && metroTextBox2.Text==row.ItemArray[2].ToString())
+                if (metroTextBox1.Text == row.ItemArray[1].ToString() && metroTextBox2.Text == row.ItemArray[2].ToString())
                 {
                     exist = true;
                 }
             }
 
-            if(!exist)
+            if (!exist)
             {
-                var result= MessageBox.Show("Ce client n'existe pas dans la base de données \nVoulez vous l'ajouter?", "Ajouter nouveau client", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Ce client n'existe pas dans la base de données \nVoulez vous l'ajouter?", "Ajouter nouveau client", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text);
+                    newClient newClient = new newClient(metroTextBox1.Text, metroTextBox2.Text, true);
+                    newClient.Closed += (s, args) => this.refresh();
                     newClient.ShowDialog();
                 }
             }
             if (allReady)
             {
-                Classes.scheduler work = new Classes.scheduler();
-                work.addNew(metroTextBox1.Text, metroTextBox2.Text, Convert.ToInt64(metroTextBox3.Text), Convert.ToInt64(metroTextBox4.Text), metroComboBox1.Text, metroDateTime1.Text);
+                //check if total > avance
+                if (Convert.ToDouble(metroTextBox4.Text) >= Convert.ToDouble(metroTextBox3.Text))
+                {
+                    Classes.scheduler work = new Classes.scheduler();
+                    work.addNew(metroTextBox1.Text, metroTextBox2.Text, metroTextBox3.Text, metroTextBox4.Text, metroDateTime1.Text);
+                }
+                else
+                    MessageBox.Show("Verifiez les montants entrés ");
             }
             else
                 MessageBox.Show("Veuillez remplir toutes les cases");
+
         }
 
         private void clientSelection(object sender, EventArgs e)

@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Radita.Classes
 {
-
-    
-    class historique
+    class historiqueCouture
     {
         MySqlConnection con;
         MySqlCommand cmd;
-        public historique()
+        public historiqueCouture()
         {
+
             con = new MySqlConnection("database= radita; port=3306; datasource= localhost; username=root; password=;");
             con.Close();
+
         }
 
         public DataTable getAll()
@@ -28,7 +28,7 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                MySqlDataAdapter data = new MySqlDataAdapter("select * from historique", con);
+                MySqlDataAdapter data = new MySqlDataAdapter("select * from historiqueCouture", con);
                 con.Close();
                 data.Fill(dt);
                 return dt;
@@ -39,13 +39,13 @@ namespace Radita.Classes
                 return null;
             }
         }
-        public void addNew(string name, string total,string num, string client, string type)
+        public void addNew(string name, string total, string client, string type)
         {
             try
             {
                 con.Open();
 
-                cmd = new MySqlCommand("Insert into historique (name, total, number, client, type) values('" + name + "','" + total + "','" + num + "','" + client + "','" + type + "')", con);
+                cmd = new MySqlCommand("Insert into historiqueCouture (name, total, client, type, date) values('" + name + "','" + total + "','" + client + "','" + type + "', '"+DateTime.Now.ToString()+"')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -56,3 +56,4 @@ namespace Radita.Classes
         }
     }
 }
+

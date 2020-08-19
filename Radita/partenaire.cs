@@ -56,7 +56,7 @@ namespace Radita
 
         private void panel2_Click(object sender, EventArgs e)
         {
-            main.changeRightPanel((Form)new newClient("",""));
+            main.changeRightPanel((Form)new newClient("","",false));
         }
 
         private void panel1_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace Radita
 
         private void panel3_Click(object sender, EventArgs e)
         {
-           // main.changeRightPanel((Form)new newOrder());
+            main.changeRightPanel((Form)new comptes());
         }
     }
 }

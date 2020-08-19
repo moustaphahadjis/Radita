@@ -114,5 +114,37 @@ namespace Radita.Classes
                 MessageBox.Show("Error! " + ex.ToString());
             }
         }
+        public DataTable getInfo(string username, string pass)
+        {
+
+            try
+            {
+                conn.Open();
+                MySqlDataAdapter cmd = new MySqlDataAdapter("select * from users where username='" + username + "' and password='" + pass + "'", conn);
+                DataTable dt = new DataTable();
+                cmd.Fill(dt);
+                conn.Close();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! " + ex.ToString());
+                return null;
+            }
+        }
+        public void Modify(string id,string name, string prenom, string username, string password, string mot)
+        {
+            try
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("update users set username='" + username + "', password='" + password + "', lastname='" + prenom + "', firstname='" + name + "', secretword='" + mot + "' where id='" + id + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error! " + ex.ToString());
+            }
+        }
     }
 }

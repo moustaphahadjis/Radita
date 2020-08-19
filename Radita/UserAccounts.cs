@@ -76,8 +76,8 @@ namespace Radita
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form a1 = new UpdateUser();
-            a1.Show();
+            //Form a1 = new UpdateUser();
+           // a1.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -103,6 +103,11 @@ namespace Radita
         {
             dataGridView1.DataSource = bindingSource1;
             GetDataSet();
+            Classes.design design = new Classes.design();
+            dataGridView1 = design.datagridview(dataGridView1);
+            button1 = design.button(button1);
+            button2 = design.button(button2);
+            button3 = design.button(button3);
         }
     }
 }
