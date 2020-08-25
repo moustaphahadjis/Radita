@@ -79,9 +79,18 @@ namespace Radita.Classes
             try
             {
                 con.Open();
-                cmd = new MySqlCommand("Insert into stock (name,price,number,picture,unite) values('" + name + "','" + price + "','" + number + "',@picture,'"+unite+"')", con);
-                cmd.Parameters.Add("@picture", MySqlDbType.LongBlob, (int)picture.Length);
-                cmd.Parameters["@picture"].Value = picture;
+                if (picture != null)
+                {
+                    cmd = new MySqlCommand("Insert into stock (name,price,number,picture,unite) values('" + name + "','" + price + "','" + number + "',@picture,'" + unite + "')", con);
+
+                    cmd.Parameters.Add("@picture", MySqlDbType.LongBlob, (int)picture.Length);
+                    cmd.Parameters["@picture"].Value = picture;
+                }
+                else
+                {
+                    cmd = new MySqlCommand("Insert into stock (name,price,number,picture,unite) values('" + name + "','" + price + "','" + number +"','" + unite + "')", con);
+
+                }
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -161,6 +170,22 @@ namespace Radita.Classes
             }
             con.Close();
             return result;
+        }
+        public bool update(string id, string number)
+        {
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("update stock set number='" + number + "' where id='" + id + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
         }
     }
 }

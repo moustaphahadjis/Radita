@@ -13,7 +13,7 @@ namespace Radita
 {
     public partial class ClientAccounts : Form
     {
-        private BindingSource bindingSource1 = new BindingSource();
+        DataTable table;
         private string conn = "server=localhost;user id = root; database=radita";
 
         public ClientAccounts()
@@ -31,9 +31,8 @@ namespace Radita
                 MySqlDataAdapter adp = new MySqlDataAdapter(load, conn);
                 MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adp);
 
-                DataTable table = new DataTable();
+                table = new DataTable();
                 adp.Fill(table);
-                bindingSource1.DataSource = table;
 
                 dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
@@ -44,7 +43,7 @@ namespace Radita
         }
         void refresh()
         {
-            dataGridView1.DataSource = bindingSource1;
+            dataGridView1.DataSource = table;
             GetDataSet();
             dataGridView1.Columns[1].HeaderText = "Noms";
             dataGridView1.Columns[4].HeaderText = "solde";
@@ -55,6 +54,15 @@ namespace Radita
             button2 = design.button(button2);
             button3 = design.button(button3);
             button4 = design.button(button4);
+
+            //Search bar
+            textBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            foreach (DataRow row in table.Rows)
+            {
+                textBox1.AutoCompleteCustomSource.Add(row[1].ToString());
+            }
         }
         private void ClientAccounts_Load(object sender, EventArgs e)
         {
@@ -114,6 +122,19 @@ namespace Radita
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells[1].Value.ToString().ToUpper() == textBox1.Text.ToUpper())
+                    {
+                        row.Selected = true;
+                        break;
+                    }
+                }
         }
     }
 }

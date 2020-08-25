@@ -24,7 +24,9 @@ namespace Radita
 
         private void mainForm_Load(object sender, EventArgs e)
         {
-
+            label3.Text = loginForm.nom;
+            label4.Text = loginForm.prenom;
+                
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)

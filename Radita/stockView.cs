@@ -61,9 +61,19 @@ namespace Radita
                 if (col is DataGridViewImageColumn)
                     ((DataGridViewImageColumn)(col)).ImageLayout = DataGridViewImageCellLayout.Stretch;
             }
+            
             button1 = design.button(button1);
             button2 = design.button(button2);
             button3 = design.button(button3);
+
+            //Search bar
+            metroTextBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+            metroTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            metroTextBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            foreach (DataRow row in dtStock.Rows)
+            {
+                metroTextBox1.AutoCompleteCustomSource.Add(row[1].ToString());
+            }
             //createImage(dataGridView1);
         }
         private void stockView_Load(object sender, EventArgs e)
@@ -134,6 +144,19 @@ namespace Radita
             a1.Closed += (s, args) => this.refresh();
             
             a1.ShowDialog();
+        }
+
+        private void metroTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells[1].Value.ToString().ToUpper() == metroTextBox1.Text.ToUpper())
+                    {
+                        row.Selected = true;
+                        break;
+                    }
+                }
         }
     }
 }

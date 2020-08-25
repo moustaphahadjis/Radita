@@ -39,13 +39,13 @@ namespace Radita.Classes
                 return null;
             }
         }
-        public void addNew(string name, string total, string client, string type)
+        public void addNew(string client,string telephone, string total, string type)
         {
             try
             {
                 con.Open();
 
-                cmd = new MySqlCommand("Insert into historiqueCouture (name, total, client, type, date) values('" + name + "','" + total + "','" + client + "','" + type + "', '"+DateTime.Now.ToString()+"')", con);
+                cmd = new MySqlCommand("Insert into historiqueCouture (client, telephone, total,type, date) values('" + client + "','" + telephone + "','" + total + "', '"+type+"','"+DateTime.Now.ToString()+"')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }

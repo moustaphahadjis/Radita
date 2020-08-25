@@ -27,6 +27,21 @@ namespace Radita
             }
             return result;
         }
+        void reste()
+        {
+            if (!string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox4.Text))
+            {
+                if (isNumber(textBox3.Text) && isNumber(textBox4.Text))
+                {
+                    double val = Convert.ToDouble(textBox4.Text) - Convert.ToDouble(textBox3.Text);
+                    textBox5.Text = val.ToString();
+                }
+                else
+                    textBox5.Text = "0";
+            }
+            else
+                textBox5.Text = "0";
+        }
         bool isOk()
         {
             bool r = true;
@@ -57,6 +72,16 @@ namespace Radita
         {
             Classes.design design = new Classes.design();
             button1 = design.button(button1);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            reste();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

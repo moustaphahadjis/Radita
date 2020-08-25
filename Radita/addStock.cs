@@ -60,8 +60,9 @@ namespace Radita
                         textBox2.Text = row.ItemArray[2].ToString();
                         textBox3.Text = "1";
                         comboBox1.Text = row.ItemArray[5].ToString();
-                        imageFromByte((byte [])row.ItemArray[4]);
 
+                        imageByte = (byte[])row.ItemArray[4];
+                        imageFromByte(imageByte);
                         break;
                     }
                 }

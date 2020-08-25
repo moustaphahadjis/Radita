@@ -146,5 +146,45 @@ namespace Radita.Classes
                 MessageBox.Show("Error! " + ex.ToString());
             }
         }
+        public string getName(string username, string passw)
+        {
+            string result;
+
+            conn.Open();
+            string checkUsername = "select firstname from users where username='" + username + "' and password ='"+passw+"'";
+            MySqlCommand cmd = new MySqlCommand(checkUsername, conn);
+            MySqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                result = sdr.GetString(0);
+            }
+            else
+            {
+                result = "";
+            }
+            conn.Close();
+            return result;
+        }
+        public string getPrenom(string username, string passw)
+        {
+            string result;
+
+            conn.Open();
+            string checkUsername = "select lastname from users where username='" + username + "' and password ='" + passw + "'";
+            MySqlCommand cmd = new MySqlCommand(checkUsername, conn);
+            MySqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.Read())
+            {
+                result = sdr.GetString(0);
+            }
+            else
+            {
+                result = "";
+            }
+            conn.Close();
+            return result;
+        }
     }
 }

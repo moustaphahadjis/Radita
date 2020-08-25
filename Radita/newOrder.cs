@@ -51,6 +51,7 @@ namespace Radita
         {
             refresh();
         }
+        string idStock;
         void search()
         {
             if(!string.IsNullOrEmpty(metroTextBox1.Text))
@@ -68,6 +69,7 @@ namespace Radita
                         label9.Text = row[5].ToString();
                         //string val= new ByteConverter().ConvertFrom(row[4]).ToString();
                         imageFromByte((byte[])row[4]);
+                        idStock = row[0].ToString();
                         break;
                     }
                 }
@@ -151,7 +153,7 @@ namespace Radita
         {
             bool r = true;
             
-            if((Convert.ToInt32(textBox3.Text)>= Convert.ToInt32(label2.Text)))
+            if((Convert.ToInt32(textBox2.Text)>= Convert.ToInt32(label2.Text)))
             {
                 MessageBox.Show("Le nombre validé est superieur au nombre present en stock");
                 r = false;
@@ -214,7 +216,17 @@ namespace Radita
                 if (clientExist())
                 {
                     Classes.historique tmp = new Classes.historique();
-                    tmp.addNew(label3.Text, textBox3.Text, textBox2.Text, textBox4.Text, button1.Text);
+                    if(tmp.addNew(label3.Text, textBox3.Text, textBox2.Text, textBox4.Text, button1.Text))
+                    {
+                        Classes.stock stock = new Classes.stock();
+                        int value = Convert.ToInt32(label2.Text) - Convert.ToInt32(textBox2.Text);
+                        if(stock.update(idStock, value.ToString()))
+                        {
+                            MessageBox.Show("Action éffectuée avec succès");
+                            this.refresh();
+                            init();
+                        }
+                    }
                 }
             }
         }
@@ -226,10 +238,21 @@ namespace Radita
                 if (clientExist())
                 {
                     Classes.Clients client = new Classes.Clients();
-                    client.addCredit(id, textBox3.Text);
-                    Classes.historique tmp = new Classes.historique();
-                    tmp.addNew(label3.Text, textBox3.Text, textBox2.Text, textBox4.Text, button2.Text);
-                
+                    if (client.addCredit(id, textBox3.Text))
+                    {
+                        Classes.historique tmp = new Classes.historique();
+                        if (tmp.addNew(label3.Text, textBox3.Text, textBox2.Text, textBox4.Text, button2.Text))
+                        {
+                            Classes.stock stock = new Classes.stock();
+                            int value = Convert.ToInt32(label2.Text) - Convert.ToInt32(textBox2.Text);
+                            if (stock.update(idStock, value.ToString()))
+                            {
+                                MessageBox.Show("Action éffectuée avec succès");
+                                this.refresh();
+                                init();
+                            }
+                        }
+                    }
                 }
                 
             }
@@ -248,12 +271,32 @@ namespace Radita
                         client.addBalance(id, val);
                         Classes.historique tmp = new Classes.historique();
                         tmp.addNew(label3.Text, textBox3.Text, textBox2.Text, textBox4.Text, button2.Text);
-
+                        Classes.stock stock = new Classes.stock();
+                        int value = Convert.ToInt32(label2.Text) - Convert.ToInt32(textBox2.Text);
+                        if (stock.update(idStock, value.ToString()))
+                        {
+                            MessageBox.Show("Action éffectuée avec succès");
+                            this.refresh();
+                            init();
+                        }
                     }
                     else
                         MessageBox.Show("Ce Client n'a que " + clientMoney.ToString() + " dans son compte");
                 }
             }
+        }
+        void init()
+        {
+            textBox1.Text = "0";
+            textBox2.Text = "0";
+            textBox3.Text = "0";
+            textBox4.Text = "";
+            metroTextBox1.Text = "";
+
+            label1.Text = "Neant";
+            label2.Text = "Neant";
+            label3.Text = "Neant";
+            //pictureBox1.Image
         }
     }
 }

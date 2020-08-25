@@ -39,7 +39,7 @@ namespace Radita.Classes
                 return null;
             }
         }
-        public void addNew(string name, string total,string num, string client, string type)
+        public bool addNew(string name, string total,string num, string client, string type)
         {
             try
             {
@@ -48,10 +48,12 @@ namespace Radita.Classes
                 cmd = new MySqlCommand("Insert into historique (name, total, number, client, type) values('" + name + "','" + total + "','" + num + "','" + client + "','" + type + "')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
+                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                return false;
             }
         }
     }

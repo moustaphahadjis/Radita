@@ -57,6 +57,9 @@ namespace Radita
                 {
                     Classes.scheduler tmp = new Classes.scheduler();
                     tmp.remove(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()));
+
+                    Classes.historiqueCouture tmp2 = new Classes.historiqueCouture();
+                    tmp2.addNew(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString(), dataGridView1.SelectedRows[0].Cells[4].Value.ToString(), "Annulé");
                     refresh();
                 }
             }
@@ -64,7 +67,14 @@ namespace Radita
 
         private void button2_Click(object sender, EventArgs e)
         {
-            modifierContrat tmp = new modifierContrat(dataGridView1.SelectedRows[0]);
+            modifierContrat tmp = new modifierContrat(
+                dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
+                dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), 
+                dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
+                dataGridView1.SelectedRows[0].Cells[3].Value.ToString(),
+                dataGridView1.SelectedRows[0].Cells[4].Value.ToString(),
+                dataGridView1.SelectedRows[0].Cells[5].Value.ToString(),
+                dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
             tmp.Closed += (s, args) => this.refresh();
             tmp.ShowDialog();
         }
@@ -84,7 +94,11 @@ namespace Radita
                 {
                     if(MessageBox.Show("Il reste "+dataGridView1.SelectedRows[0].Cells[5].Value.ToString()+" à payer \nContinuer?","Completer cetter transaction",MessageBoxButtons.YesNo)==DialogResult.Yes)
                     {
-
+                        Classes.historiqueCouture tmp = new Classes.historiqueCouture();
+                        tmp.addNew(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString(), dataGridView1.SelectedRows[0].Cells[4].Value.ToString(), "Payé");
+                        Classes.scheduler tmp2 = new Classes.scheduler();
+                        tmp2.remove(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()));
+                        this.refresh();
                     }
                 }
             }

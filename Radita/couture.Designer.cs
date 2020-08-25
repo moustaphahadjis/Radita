@@ -60,6 +60,9 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(196, 37);
             this.panel4.TabIndex = 5;
+            this.panel4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.panel4.MouseLeave += new System.EventHandler(this.panel4_MouseLeave);
+            this.panel4.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
             // 
             // label4
             // 
@@ -70,6 +73,9 @@
             this.label4.Size = new System.Drawing.Size(90, 22);
             this.label4.TabIndex = 1;
             this.label4.Text = "Historique";
+            this.label4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.label4.MouseLeave += new System.EventHandler(this.panel4_MouseLeave);
+            this.label4.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
             // 
             // pictureBox4
             // 
@@ -78,6 +84,9 @@
             this.pictureBox4.Size = new System.Drawing.Size(20, 20);
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.panel4_MouseLeave);
+            this.pictureBox4.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
             // 
             // panel3
             // 

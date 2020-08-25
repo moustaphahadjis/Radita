@@ -12,6 +12,7 @@ namespace Radita
 {
     public partial class historiqueCouture : Form
     {
+
         public historiqueCouture()
         {
             InitializeComponent();
@@ -19,6 +20,10 @@ namespace Radita
 
         private void historiqueCouture_Load(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            Classes.historiqueCouture tmp = new Classes.historiqueCouture();
+            dt = tmp.getAll();
+            dataGridView1.DataSource = dt;
             Classes.design design = new Classes.design();
             dataGridView1 = design.datagridview(dataGridView1);
         }

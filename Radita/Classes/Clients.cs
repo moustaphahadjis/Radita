@@ -142,7 +142,7 @@ namespace Radita.Classes
                 return null;
             }
         }
-        public void addBalance(string id, string balance)
+        public bool addBalance(string id, string balance)
         {
             try
             {
@@ -150,13 +150,15 @@ namespace Radita.Classes
                 MySqlCommand cmd = new MySqlCommand("Update clients set balance = '" + balance + "' where id='" + id + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
+                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                return false;
             }
         }
-        public void addCredit(string id,string credit)
+        public bool addCredit(string id,string credit)
         {
             try
             {
@@ -167,13 +169,16 @@ namespace Radita.Classes
                 {
                     credit = (Convert.ToDouble(credit) + reader.GetDouble(0)).ToString();
                 }
-                cmd = new MySqlCommand("update clients set creddit='" + credit + "' where id='" + id + "'", con);
+                reader.Close();
+                cmd = new MySqlCommand("update clients set credit='" + credit + "' where id='" + id + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
+                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                return false;
             }
         }
         public void Add(string name, string telephone, string credit, string balance)

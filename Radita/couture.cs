@@ -87,5 +87,20 @@ namespace Radita
         {
 
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            main.changeRightPanel((Form)new historiqueCouture());
+        }
+
+        private void pictureBox4_MouseHover(object sender, EventArgs e)
+        {
+            buttonHover(panel4);
+        }
+
+        private void panel4_MouseLeave(object sender, EventArgs e)
+        {
+            buttonLeave(panel4);
+        }
     }
 }

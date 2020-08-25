@@ -13,12 +13,24 @@ namespace Radita
 {
     public partial class modifierContrat : Form
     {
-        DataGridViewRow row;
-        public modifierContrat(DataGridViewRow tmp)
+        string a, b, c, d, ee, id, f;
+        public modifierContrat(string ID,string tmp1, string tmp2, string tmp3, string tmp4, string tmp5, string tmp6)
         {
             InitializeComponent();
-            row = tmp;
+            a = tmp1;
+            b = tmp2;
+            c = tmp3;
+            d = tmp4;
+            ee = tmp5;
+            id = ID;
+            f = tmp6;
         }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            reste();
+        }
+
         bool isNumber(string tmp)
         {
             bool result = true;
@@ -46,26 +58,44 @@ namespace Radita
            
             return r;
         }
+        void reste()
+        {
+            if(!string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox4.Text))
+            {
+                if (isNumber(textBox3.Text) && isNumber(textBox4.Text))
+                {
+                    double val = Convert.ToDouble(textBox4.Text) - Convert.ToDouble(textBox3.Text);
+                    textBox5.Text = val.ToString();
+                }
+                else
+                    textBox5.Text = "0";
+            }
+            else
+                textBox5.Text = "0";
+        }
         private void modifierContrat_Load(object sender, EventArgs e)
         {
-            if (isOk())
-            {
-                textBox1.Text = row.Cells[1].Value.ToString();
-                textBox2.Text = row.Cells[2].Value.ToString();
-                textBox3.Text = row.Cells[3].Value.ToString();
-                textBox4.Text = row.Cells[4].Value.ToString();
-                textBox5.Text = row.Cells[5].Value.ToString();
-                dateTimePicker1.Value = Convert.ToDateTime(row.Cells[6].Value.ToString());
+           
+                textBox1.Text = a;
+                textBox2.Text = b;
+                textBox3.Text = c;
+                textBox4.Text = d;
+                textBox5.Text = ee;
+                //dateTimePicker1.Value. = Convert.ToDateTime();
 
-            }
+            
             Classes.design design = new Classes.design();
             button1 = design.button(button1);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Classes.scheduler tmp = new Classes.scheduler();
-            tmp.modify(Convert.ToInt32(row.Cells[0].Value.ToString()), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker1.Value.ToString());
+            if (isOk())
+            {
+                Classes.scheduler tmp = new Classes.scheduler();
+                tmp.modify(Convert.ToInt32(id), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker1.Value.ToString());
+
+            }
         }
     }
 }
