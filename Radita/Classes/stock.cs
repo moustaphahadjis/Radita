@@ -18,8 +18,8 @@ namespace Radita.Classes
 
         public stock()
         {
-            con = new MySqlConnection("database=radita; port=3306; username=root; password=; datasource= localhost;");
-            con.Close();
+            Classes.connection c = new Classes.connection();
+            con = c.getCon();
         }
         public DataTable getAll()
         {
@@ -74,7 +74,7 @@ namespace Radita.Classes
             }
         }
 
-        public void addStock(string name, double price, float number, byte[] picture,string unite)
+        public void addStock(string name, double price, double number, byte[] picture,string unite)
         {
             try
             {

@@ -43,16 +43,19 @@ namespace Radita
                     if (!clients.CheckClient(metroTextBox1.Text))
                     {
                         clients.Add(metroTextBox1.Text, metroTextBox2.Text, metroTextBox3.Text, metroTextBox4.Text);
+                        Classes.historiquePartenaire tmp = new Classes.historiquePartenaire();
+                        tmp.addNew(metroTextBox1.Text, metroTextBox2.Text, "Ajouté", metroTextBox3.Text + "-" + metroTextBox4.Text);
+
+                        if (close)
+                            this.Close();
                     }
                 } 
             }
             else
             {
-                MessageBox.Show("Invalid Input!");
+                MessageBox.Show("Valeur invalide");
             }
 
-            if (close)
-                this.Close();
         }
 
         private void newClient_Load(object sender, EventArgs e)

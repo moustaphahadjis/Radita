@@ -16,8 +16,8 @@ namespace Radita.Classes
         MySqlCommand cmd;
         public scheduler()
         {
-            con = new MySqlConnection("database=radita; port=3306; username=root; password=; datasource= localhost;");
-            con.Close();
+            Classes.connection c = new Classes.connection();
+            con = c.getCon();
         }
 
         public void addNew(string clientName, string clientPhone, string avance, string total, string reste, string date)
@@ -27,6 +27,7 @@ namespace Radita.Classes
                 con.Open();
 
                 cmd = new MySqlCommand("insert into scheduler (clientName, clientphone,avance, total, reste, date) values('" + clientName + "','" + clientPhone + "','" + avance + "','" + total + "','" + reste + "','" + date + "')", con);
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch(Exception e)
@@ -58,6 +59,7 @@ namespace Radita.Classes
                 con.Open();
 
                 cmd = new MySqlCommand("update scheduler set clientName='" + clientName + "', clientphone='" + clientPhone + "', avance='" + avance + "',reste='" + reste + "',total='" + total + "', date='" + date + "' where id='"+id+"'", con);
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)

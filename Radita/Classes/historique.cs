@@ -18,8 +18,8 @@ namespace Radita.Classes
         MySqlCommand cmd;
         public historique()
         {
-            con = new MySqlConnection("database= radita; port=3306; datasource= localhost; username=root; password=;");
-            con.Close();
+            Classes.connection c = new Classes.connection();
+            con = c.getCon();
         }
 
         public DataTable getAll()
@@ -45,7 +45,7 @@ namespace Radita.Classes
             {
                 con.Open();
 
-                cmd = new MySqlCommand("Insert into historique (name, total, number, client, type) values('" + name + "','" + total + "','" + num + "','" + client + "','" + type + "')", con);
+                cmd = new MySqlCommand("Insert into historique (name, total, number, client, type,date) values('" + name + "','" + total + "','" + num + "','" + client + "','" + type + "','" + DateTime.Now.ToString() + "')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;

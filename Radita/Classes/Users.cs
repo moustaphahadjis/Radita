@@ -12,7 +12,13 @@ namespace Radita.Classes
 {
     class Users
     {
-        private MySqlConnection conn = new MySqlConnection("server=localhost;user id=root;database=radita");
+        
+        private MySqlConnection conn;
+        public Users()
+        {
+            Classes.connection c = new Classes.connection();
+            conn = c.getCon();
+        }
 
         /******Method to check user password******/
         public bool CheckPass(string str1, string str2)

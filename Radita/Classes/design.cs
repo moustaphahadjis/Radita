@@ -45,6 +45,38 @@ namespace Radita.Classes
             }
             return data;
         }
+        public DataGridView datagridview2(DataGridView data)
+        {
+            data.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            data.AllowUserToAddRows = false;
+            data.AllowUserToDeleteRows = true;
+            //data.AutoSizeRowsMode= DataGridViewAutoSizeRowsMode.AllHeaders;
+            data.MultiSelect = false;
+            data.ReadOnly = true;
+            data.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right )));
+            data.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 212, 144);
+            data.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            data.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            data.DefaultCellStyle.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            data.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            data.BorderStyle = BorderStyle.None;
+            data.ForeColor = System.Drawing.Color.Black;
+            data.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //data.Columns[0].Visible = false;
+            data.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            //data.Columns["id"].Visible = false;
+            data.RowHeadersVisible = false;
+            data.Columns[4].Visible = false;
+            data.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //data.autosca
+            foreach (DataGridViewColumn col in data.Columns)
+            {
+                col.HeaderText = col.HeaderText.ToUpper();
+            }
+            data.Columns[0].Width = 30;
+            return data;
+        }
 
         public Button button(Button but)
         {

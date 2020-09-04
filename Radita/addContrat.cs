@@ -65,11 +65,29 @@ namespace Radita
             {
                 Classes.scheduler tmp = new Classes.scheduler();
                 tmp.addNew(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker1.Value.ToString());
+                MessageBox.Show("Action éffectue avec succès");
+                this.Close();
             }
         }
 
+        DataTable dt;
         private void addContrat_Load(object sender, EventArgs e)
         {
+            dt = new DataTable();
+            Classes.Clients tmp = new Classes.Clients();
+            dt = tmp.getAll();
+
+            textBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox2.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            textBox2.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            foreach (DataRow row in dt.Rows)
+            {
+                textBox1.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
+                textBox2.AutoCompleteCustomSource.Add(row.ItemArray[1].ToString());
+            }
             Classes.design design = new Classes.design();
             button1 = design.button(button1);
         }
@@ -82,6 +100,18 @@ namespace Radita
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.ItemArray[1].ToString().ToUpper() == textBox1.Text.ToUpper())
+                {
+                    textBox2.Text = row.ItemArray[2].ToString();
+                    break;
+                }
+            }
         }
     }
 }

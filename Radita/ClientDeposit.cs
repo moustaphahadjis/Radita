@@ -13,13 +13,15 @@ namespace Radita
 {
     public partial class ClientDeposit : Form
     {
-        string name, telephone,id;
-        public ClientDeposit(string val,string tmp, string tmp2)
+        string nom, telephone,id;
+        bool close;
+        public ClientDeposit(string Id,string Nom, string Telephone,bool Close)
         {
             InitializeComponent();
-            name = tmp;
-            telephone = tmp2;
-            id = val;
+            nom = Nom;
+            telephone = Telephone;
+            id = Id;
+            close = Close;
         }
 
         bool isNumber(string tmp)
@@ -50,7 +52,15 @@ namespace Radita
                         val = temp.GetBalance(id);
                         val += float.Parse(textBox3.Text);
                         temp.Deposit(textBox1.Text, phone, val);
-                        MessageBox.Show("Money deposited successfully!");
+
+                        Classes.historiquePartenaire part = new Classes.historiquePartenaire();
+                        part.addNew(nom, telephone, "Dépôt", textBox3.Text);
+                        MessageBox.Show("Dépôt éffectué avec succès");
+                        if (close)
+                        {
+                            this.Close();
+                        }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -59,7 +69,7 @@ namespace Radita
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Input!");
+                    MessageBox.Show("Valeur invalide");
                 }
                 
             }
@@ -67,7 +77,7 @@ namespace Radita
 
         private void ClientDeposit_Load(object sender, EventArgs e)
         {
-            textBox1.Text = name;
+            textBox1.Text = nom;
             textBox2.Text = telephone;
             Classes.design design = new Classes.design();
             button1 = design.button(button1);

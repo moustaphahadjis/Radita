@@ -16,9 +16,8 @@ namespace Radita.Classes
         MySqlCommand cmd;
         public historiqueCouture()
         {
-
-            con = new MySqlConnection("database= radita; port=3306; datasource= localhost; username=root; password=;");
-            con.Close();
+            Classes.connection c = new Classes.connection();
+            con = c.getCon();
 
         }
 

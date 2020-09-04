@@ -78,16 +78,22 @@ namespace Radita
                 {
                     if(!char.IsDigit(c))
                     {
-                        result = false;
-                        break;
+                        if (c != '.')
+                        {
+                            result = false;
+                            break;
+                        }
                     }    
                 }
                 foreach (char c in textBox3.Text)
                 {
                     if (!char.IsDigit(c))
                     {
-                        result = false;
-                        break;
+                        if (c != '.')
+                        {
+                            result = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -159,7 +165,7 @@ namespace Radita
                 }
                 else
                 {
-                    tmp.addStock(textBox1.Text, Convert.ToDouble(textBox2.Text), Convert.ToInt64(textBox3.Text), imageByte, comboBox1.Text);
+                    tmp.addStock(textBox1.Text, Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text), imageByte, comboBox1.Text);
                     if (close)
                         this.Close();
                 }

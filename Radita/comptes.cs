@@ -50,14 +50,14 @@ namespace Radita
 
         private void button1_Click(object sender, EventArgs e)
         {
-            rembourser tmp = new rembourser(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+            rembourser tmp = new rembourser(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[3].Value.ToString(),true, dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
             tmp.Closed += (s, args) => this.refresh();
             tmp.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ClientDeposit tmp = new ClientDeposit(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+            ClientDeposit tmp = new ClientDeposit(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),true);
             tmp.Closed += (s, args) => this.refresh();
             tmp.ShowDialog();
         }

@@ -13,11 +13,14 @@ namespace Radita
     public partial class rembourser : Form
     {
         string id, credit;
-        public rembourser(string str1, string str2)
+        string nom, telephone;
+        bool close;
+        public rembourser(string Id, string Credit, bool Close, string Nom, string Telephone)
         {
             InitializeComponent();
-            id = str1;
-            credit = str2;
+            id = Id;
+            credit = Credit;
+            close = Close;
         }
         bool isNumber(string tmp)
         {
@@ -29,6 +32,27 @@ namespace Radita
             }
             return result;
         }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrEmpty(textBox3.Text))
@@ -39,6 +63,14 @@ namespace Radita
                     double value = Convert.ToInt64(credit) - Convert.ToInt64(textBox3.Text);
                     Classes.Clients tmp = new Classes.Clients();
                     tmp.rembourser(id, value.ToString());
+
+                        Classes.historiquePartenaire part = new Classes.historiquePartenaire();
+                        part.addNew(nom, telephone, "Remboursé", textBox3.Text);
+                        MessageBox.Show(textBox3.Text + "fcfa remboursé éffectué avec succès");
+                        if(close)
+                        {
+                            this.Close();
+                        }
                 }
                 else
                 {
@@ -54,6 +86,8 @@ namespace Radita
         private void rembourser_Load(object sender, EventArgs e)
         {
             textBox1.Text = credit;
+            textBox2.Text = nom;
+            textBox4.Text = telephone;
             Classes.design design = new Classes.design();
             button1 = design.button(button1);
         }

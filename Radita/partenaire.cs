@@ -78,5 +78,20 @@ namespace Radita
         {
             main.changeRightPanel((Form)new comptes());
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            main.changeRightPanel((Form)new historiquePartenaire());
+        }
+
+        private void label4_MouseHover(object sender, EventArgs e)
+        {
+            buttonHover(panel4);
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            buttonLeave(panel4);
+        }
     }
 }

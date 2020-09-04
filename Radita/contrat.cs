@@ -90,7 +90,7 @@ namespace Radita
         {
             if(validRow())
             {
-                if(Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[5].Value.ToString())>0)
+                if(Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[5].Value.ToString())>=0)
                 {
                     if(MessageBox.Show("Il reste "+dataGridView1.SelectedRows[0].Cells[5].Value.ToString()+" à payer \nContinuer?","Completer cetter transaction",MessageBoxButtons.YesNo)==DialogResult.Yes)
                     {

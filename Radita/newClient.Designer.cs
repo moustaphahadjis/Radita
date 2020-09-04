@@ -122,9 +122,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(239, 276);
+            this.button1.Location = new System.Drawing.Point(201, 261);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 45);
+            this.button1.Size = new System.Drawing.Size(172, 60);
             this.button1.TabIndex = 2;
             this.button1.Text = "Ajouter";
             this.button1.UseVisualStyleBackColor = true;

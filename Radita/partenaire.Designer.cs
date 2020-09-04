@@ -30,26 +30,26 @@
         {
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -60,6 +60,9 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(196, 37);
             this.panel4.TabIndex = 1;
+            this.panel4.Click += new System.EventHandler(this.label4_Click);
+            this.panel4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
+            this.panel4.MouseHover += new System.EventHandler(this.label4_MouseHover);
             // 
             // label4
             // 
@@ -70,6 +73,20 @@
             this.label4.Size = new System.Drawing.Size(90, 22);
             this.label4.TabIndex = 1;
             this.label4.Text = "Historique";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.label4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
+            this.label4.MouseHover += new System.EventHandler(this.label4_MouseHover);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(23, 10);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox4.TabIndex = 0;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.label4_Click);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
+            this.pictureBox4.MouseHover += new System.EventHandler(this.label4_MouseHover);
             // 
             // panel3
             // 
@@ -96,6 +113,17 @@
             this.label3.MouseLeave += new System.EventHandler(this.panel3_MouseLeave);
             this.label3.MouseHover += new System.EventHandler(this.panel3_MouseHover);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(23, 10);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.panel3_Click);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.panel3_MouseLeave);
+            this.pictureBox3.MouseHover += new System.EventHandler(this.panel3_MouseHover);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
@@ -120,6 +148,17 @@
             this.label2.Click += new System.EventHandler(this.panel2_Click);
             this.label2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
             this.label2.MouseHover += new System.EventHandler(this.panel2_MouseHover);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(23, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.panel2_Click);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.panel2_MouseHover);
             // 
             // panel1
             // 
@@ -146,46 +185,6 @@
             this.label1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             this.label1.MouseHover += new System.EventHandler(this.panel1_MouseHover);
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImage = global::Radita.Properties.Resources.devenir_partenaire;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(1, 13);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(200, 240);
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(23, 10);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(23, 10);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.panel3_Click);
-            this.pictureBox3.MouseLeave += new System.EventHandler(this.panel3_MouseLeave);
-            this.pictureBox3.MouseHover += new System.EventHandler(this.panel3_MouseHover);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(23, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.panel2_Click);
-            this.pictureBox2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
-            this.pictureBox2.MouseHover += new System.EventHandler(this.panel2_MouseHover);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(23, 10);
@@ -196,6 +195,16 @@
             this.pictureBox1.Click += new System.EventHandler(this.panel1_Click);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             this.pictureBox1.MouseHover += new System.EventHandler(this.panel1_MouseHover);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = global::Radita.Properties.Resources.devenir_partenaire;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(1, 13);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(200, 240);
+            this.pictureBox5.TabIndex = 5;
+            this.pictureBox5.TabStop = false;
             // 
             // partenaire
             // 
@@ -213,17 +222,17 @@
             this.Load += new System.EventHandler(this.partenaire_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -12,8 +12,12 @@ namespace Radita.Classes
 {
     class Clients
     {
-        private MySqlConnection con = new MySqlConnection("server=localhost;user id=root;database=radita");
-
+        MySqlConnection con;
+        public Clients()
+        {
+            Classes.connection c = new Classes.connection();
+            con = c.getCon();
+        }
         /******Method to add record to database******/
         public void Add(string str1, ulong num1)
         {

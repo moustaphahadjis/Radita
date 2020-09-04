@@ -203,6 +203,9 @@ namespace Radita
                 {
                     Classes.scheduler work = new Classes.scheduler();
                     work.addNew(metroTextBox1.Text, metroTextBox2.Text, metroTextBox3.Text, metroTextBox4.Text, metroDateTime1.Text);
+                    MessageBox.Show("action effectué avec succès");
+                    refresh();
+                    init();
                 }
                 else
                     MessageBox.Show("Verifiez les montants entrés ");
@@ -211,7 +214,13 @@ namespace Radita
                 MessageBox.Show("Veuillez remplir toutes les cases");
 
         }
-
+        void init()
+        {
+            metroTextBox1.Text = "";
+            metroTextBox2.Text = "";
+            metroTextBox3.Text = "";
+            metroTextBox4.Text = "";
+        }
         private void clientSelection(object sender, EventArgs e)
         {
 

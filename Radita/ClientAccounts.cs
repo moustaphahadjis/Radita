@@ -14,7 +14,7 @@ namespace Radita
     public partial class ClientAccounts : Form
     {
         DataTable table;
-        private string conn = "server=localhost;user id = root; database=radita";
+        //private string conn = "server=localhost;user id = root; database=radita";
 
         public ClientAccounts()
         {
@@ -22,29 +22,13 @@ namespace Radita
         }
 
         /******Method to load database******/
-        public void GetDataSet()
-        {
-            try
-            {
-                string load = "select * from clients";
-
-                MySqlDataAdapter adp = new MySqlDataAdapter(load, conn);
-                MySqlCommandBuilder commandBuilder = new MySqlCommandBuilder(adp);
-
-                table = new DataTable();
-                adp.Fill(table);
-
-                dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        
         void refresh()
         {
+            Classes.Clients tmp = new Classes.Clients();
+            table = tmp.getAll();
             dataGridView1.DataSource = table;
-            GetDataSet();
+            //GetDataSet();
             dataGridView1.Columns[1].HeaderText = "Noms";
             dataGridView1.Columns[4].HeaderText = "solde";
             Classes.design design = new Classes.design();
@@ -101,22 +85,27 @@ namespace Radita
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //ClientDeposit a1 = new ClientDeposit();
-            //a1.Show();
+            ClientDeposit a1 = new ClientDeposit(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),true);
+
+            a1.Closed += (s, args) => this.refresh();
+            a1.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Classes.Clients temp = new Classes.Clients();
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                if (MessageBox.Show("Voulez vous vraiment supprimer ce Client?", "Supprimer ?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    temp.Delete(row.Cells[1].Value.ToString());
-                    GetDataSet();
+                    Classes.historiquePartenaire tmp = new Classes.historiquePartenaire();
+                    tmp.addNew(dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), dataGridView1.SelectedRows[0].Cells[2].Value.ToString(), "Supprimé", dataGridView1.SelectedRows[0].Cells[3].Value.ToString() + "-" + dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+
+                    temp.Delete(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    MessageBox.Show("Client Supprimé avec succès");
+                    refresh();
                 }
-                MessageBox.Show("Record(s) deleted Successfully!");
             }
             catch (Exception ex)
             {

@@ -94,7 +94,8 @@ namespace Radita
             {
                 Classes.scheduler tmp = new Classes.scheduler();
                 tmp.modify(Convert.ToInt32(id), textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker1.Value.ToString());
-
+                MessageBox.Show("Action éffectue avec succès");
+                this.Close();
             }
         }
     }

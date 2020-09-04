@@ -67,6 +67,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.button28 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -618,6 +619,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button28);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.label1);
@@ -639,6 +641,16 @@
             this.label3.Size = new System.Drawing.Size(109, 23);
             this.label3.TabIndex = 4;
             this.label3.Text = "Calendrier";
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(8, 451);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(337, 61);
+            this.button28.TabIndex = 6;
+            this.button28.Text = "Completer Transaction";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // calendar
             // 
@@ -701,5 +713,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button28;
     }
 }
